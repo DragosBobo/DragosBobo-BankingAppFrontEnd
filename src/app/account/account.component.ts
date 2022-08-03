@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountModel } from './account.model';
 import { AccountService } from './service/account.service';
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',

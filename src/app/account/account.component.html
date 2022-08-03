@@ -2,8 +2,19 @@
 <p>List with every account : </p>
 
 <li *ngFor="let account of accounts">
-    <div>Type of account : {{account.accountType}}  </div>
-    <div>Currency of this account : {{account.currency}}   </div>
-    <div>Iban of this account : {{account.iban}}  </div>
-    <div>Id of this account : {{account.accountId}}  </div>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{account.iban}}
+          </mat-panel-title>
+          <mat-panel-description>
+
+            Type of account : {{account.accountType}} 
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+        <ng-template matExpansionPanelContent>
+          Transactions 
+        </ng-template>
+      </mat-expansion-panel>
 </li>
