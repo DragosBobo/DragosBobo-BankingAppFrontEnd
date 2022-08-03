@@ -7,16 +7,16 @@ import { AccountService } from './service/account.service';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-  accounts = new Array<AccountModel>();
-  
+  accounts: AccountModel[] = [];
+
   constructor(public accountService: AccountService) { }
 
   ngOnInit(): void {
-    this.accountService.fetchAccounts().subscribe(response =>{
+    this.accountService.fetchAccounts().subscribe(response => {
       this.accounts = response;
-      console.log(response);
-      // console.log(this.accounts[0].accountType);
-      
+
+
+
     });
   }
 

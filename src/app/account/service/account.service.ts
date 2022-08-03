@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { AccountModel } from "../account.model";
 
 @Injectable({providedIn:'root'})
 export class AccountService{
@@ -11,9 +12,9 @@ export class AccountService{
 
     }
     //get accounts 
-    fetchAccounts() : Observable<any> {
+    fetchAccounts() : Observable<AccountModel[]> {
 
-        return this.http.get<any>(this.accountApiUrl);
+        return this.http.get<AccountModel[]>(this.accountApiUrl);
     }
     //create accounts
     createAccounts(){
