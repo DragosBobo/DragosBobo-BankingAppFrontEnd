@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
 import { AccountService } from './account/service/account.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]

@@ -15,8 +15,6 @@ export class AccountComponent implements OnInit {
     this.accountService.fetchAccounts().subscribe(response => {
       this.accounts = response;
 
-
-
     });
   }
 
