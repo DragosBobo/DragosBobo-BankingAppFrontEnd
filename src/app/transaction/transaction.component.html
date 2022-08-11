@@ -1,0 +1,17 @@
+
+<p>List with every transactions : </p>
+
+<li *ngFor="let transaction of transactions">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{transaction.totalAmount}}
+          </mat-panel-title>
+          <mat-panel-description>
+
+         {{transaction.categoryName}} 
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+      </mat-expansion-panel>
+</li>

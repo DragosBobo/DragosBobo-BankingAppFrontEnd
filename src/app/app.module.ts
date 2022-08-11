@@ -8,11 +8,14 @@ import { AccountService } from './account/service/account.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { TransactionComponent } from './transaction/transaction.component';
+import { TransactionService } from './transaction/service/transaction.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AccountComponent
+    AccountComponent,
+    TransactionComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     BrowserAnimationsModule,
     MatExpansionModule
   ],
-  providers: [AccountService],
+  providers: [AccountService,TransactionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
