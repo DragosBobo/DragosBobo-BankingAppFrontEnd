@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountModel } from './account.model';
+import { AccountModel, CreateAccountModel } from './account.model';
 import { AccountService } from './service/account.service';
+import { AccountId, MockAccount } from './account.mock';
 
 @Component({
   selector: 'app-account',
@@ -9,7 +10,7 @@ import { AccountService } from './service/account.service';
 })
 export class AccountComponent implements OnInit {
   accounts: AccountModel[] = [];
-
+ 
   constructor(public accountService: AccountService) { }
 
   ngOnInit(): void {
@@ -17,6 +18,9 @@ export class AccountComponent implements OnInit {
       this.accounts = response;
 
     });
+    // this.accountService.createAccounts(MockAccount).subscribe();
+    // this.accountService.deleteAccount(AccountId).subscribe();
+    // this.accountService.updateAccount(AccountId).subscribe();
   }
 
 }
