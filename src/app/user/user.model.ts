@@ -8,5 +8,8 @@ interface CreateUserModel {
     password: string;
     confirmedPassword: string;
 }
-
-export{ CreateUserModel}
+interface LoginUserModel {
+    email: string;
+    password: string;
+}
+export { CreateUserModel ,LoginUserModel}

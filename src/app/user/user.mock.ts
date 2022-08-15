@@ -1,4 +1,4 @@
-import { CreateUserModel } from "./user.model";
+import { CreateUserModel ,LoginUserModel } from "./user.model";
 
 
 var mockUser : CreateUserModel={
@@ -9,4 +9,8 @@ var mockUser : CreateUserModel={
     password: "Parola12345@",
     confirmedPassword: "Parola12345@"
 }
-export{mockUser}
+var MockLogioginUser : LoginUserModel ={
+    email: "Andrei.popescu@gmail.com",
+    password: "Parola12345@"
+}
+export{mockUser,MockLogioginUser}

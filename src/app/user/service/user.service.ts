@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreateAccountModel } from 'src/app/account/account.model';
 import { environment } from 'src/environments/environment';
-import { CreateUserModel } from '../user.model';
+import { CreateUserModel, LoginUserModel } from '../user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,4 +18,8 @@ export class UserService {
   }
 
   //login a user 
+  loginUser(user: LoginUserModel) : Observable<LoginUserModel> {
+    return this.http.post<LoginUserModel>(`${this.userApiUrl}/login`,user);
+  }
+
 }
