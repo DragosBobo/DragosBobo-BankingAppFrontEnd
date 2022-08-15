@@ -17,7 +17,7 @@ export class TransactionComponent implements OnInit {
   ngOnInit(): void {
     //this.transactionService.fetchTransactions().subscribe(response=>{this.transactions=response;});
     //this.transactionService.createTransaction(CreateTransaction).subscribe(response=>console.log(response));
-    //this.transactionService.fetchReportTransaction(RaportTransaction).subscribe(response=>this.transactions=response);
+    this.transactionService.fetchReportTransaction(RaportTransaction).subscribe(response=>this.transactions=response);
     //this.transactionService.fetchTransactionsById(TransactionId).subscribe(response=>this.transactions=response);
 
     
