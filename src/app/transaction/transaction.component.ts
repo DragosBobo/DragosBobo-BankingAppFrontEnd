@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from './service/transaction.service';
-import { TransactionId } from './transaction.mock';
+import { TransactionId , CreateTransaction, RaportTransaction } from './transaction.mock';
 import { TransactionModel } from './transaction.model';
 @Component({
   selector: 'app-transaction',
@@ -15,8 +15,12 @@ export class TransactionComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.transactionService.fetchTransactions().subscribe(response=>{this.transactions=response;});
+    //this.transactionService.fetchTransactions().subscribe(response=>{this.transactions=response;});
+    //this.transactionService.createTransaction(CreateTransaction).subscribe(response=>console.log(response));
+    //this.transactionService.fetchReportTransaction(RaportTransaction).subscribe(response=>this.transactions=response);
     //this.transactionService.fetchTransactionsById(TransactionId).subscribe(response=>this.transactions=response);
+
+    
   }
 
 }

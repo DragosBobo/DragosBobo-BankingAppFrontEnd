@@ -7,7 +7,7 @@ import { AccountModel, CreateAccountModel } from "../account.model";
 @Injectable({ providedIn: 'root' })
 export class AccountService {
 
-    private readonly accountApiUrl = `${environment.apiBase}/Account`;
+    private readonly accountApiUrl = `${environment.apiBase}/api/Account`;
     constructor(private http: HttpClient) {
 
     }
