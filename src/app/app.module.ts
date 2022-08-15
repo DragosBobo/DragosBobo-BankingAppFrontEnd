@@ -11,6 +11,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { TransactionComponent } from './transaction/transaction.component';
 import { TransactionService } from './transaction/service/transaction.service';
 import { UserComponent } from './user/user.component';
+import { UserService } from './user/service/user.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { UserComponent } from './user/user.component';
     BrowserAnimationsModule,
     MatExpansionModule
   ],
-  providers: [AccountService,TransactionService],
+  providers: [AccountService,TransactionService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
