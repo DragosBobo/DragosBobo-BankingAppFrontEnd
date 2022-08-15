@@ -17,7 +17,7 @@ export class TransactionService {
     }
     //get all transactions for one account Id
     fetchTransactionsById(id: string): Observable<TransactionModel[]> {
-        return this.http.get<TransactionModel[]>("https://localhost:7240/account/b4b5e87c-98a4-4457-824b-9768433e9cce");
+        return this.http.get<TransactionModel[]>(`${this.transactionApiUrl}/account/${id}`);
     }
 
 }
