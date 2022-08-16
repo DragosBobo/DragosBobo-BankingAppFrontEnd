@@ -7,13 +7,10 @@ import { AccountModel, CreateAccountModel } from "../account.model";
 @Injectable({ providedIn: 'root' })
 export class AccountService {
 
-    private readonly accountApiUrl = `${environment.apiBase}/api/Account`;
-    constructor(private http: HttpClient) {
-
-    }
+    private readonly accountApiUrl = `${environment.apiBase}/Account`;
+    constructor(private http: HttpClient) { }
     //get accounts 
     fetchAccounts(): Observable<AccountModel[]> {
-
         return this.http.get<AccountModel[]>(this.accountApiUrl);
     }
     //create accounts

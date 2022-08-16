@@ -7,21 +7,21 @@ import { CreateTransactionModel, TransactionModel, RaportTransactionModel } from
 @Injectable({ providedIn: 'root' })
 export class TransactionService {
 
-    private readonly transactionApiUrl = environment.apiBase;
+    private readonly transactionApiUrl = `${environment.apiBase}/Transacion`;
     constructor(private http: HttpClient) {
 
     }
     //get all transactions 
     fetchTransactions(): Observable<TransactionModel[]> {
-        return this.http.get<TransactionModel[]>(`${this.transactionApiUrl}/api/Transaction`);
+        return this.http.get<TransactionModel[]>(`${this.transactionApiUrl}`);
     }
     //get all transactions for one account Id
     fetchTransactionsById(id: string): Observable<TransactionModel[]> {
-        return this.http.get<TransactionModel[]>(`${this.transactionApiUrl}/account/${id}`);
+        return this.http.get<TransactionModel[]>(`${this.transactionApiUrl}/${id}`);
     }
     //create a transaction 
     createTransaction(transaction: CreateTransactionModel): Observable<CreateTransactionModel> {
-        return this.http.post<CreateTransactionModel>(`${this.transactionApiUrl}/api/Transaction`, transaction);
+        return this.http.post<CreateTransactionModel>(`${this.transactionApiUrl}`, transaction);
     }
     //get transaction report 
     fetchReportTransaction(req: RaportTransactionModel): Observable<TransactionModel[]> {

@@ -9,7 +9,7 @@ import { CreateUserModel, LoginUserModel } from '../user.model';
   providedIn: 'root'
 })
 export class UserService {
-  private readonly userApiUrl = `${environment.apiBase}/api/Auth`;
+  private readonly userApiUrl = `${environment.apiBase}/Auth`;
   constructor(private http: HttpClient) { }
 
   // register a user 
