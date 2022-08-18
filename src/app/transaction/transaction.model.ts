@@ -1,12 +1,10 @@
-export { TransactionModel, CreateTransactionModel ,RaportTransactionModel};
+export { TransactionModel, CreateTransactionModel, RaportTransactionModel };
 
 enum CategoryTransaction { Food, Entertainment }
 
 interface TransactionModel {
     totalAmount: number;
     categoryName: string;
-
-
 }
 interface CreateTransactionModel {
     amount: number;

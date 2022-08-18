@@ -1,4 +1,3 @@
-import { EmailValidator } from "@angular/forms";
 
 interface CreateUserModel {
     firstName: string;

@@ -7,7 +7,7 @@ import { CreateTransactionModel, TransactionModel, RaportTransactionModel } from
 @Injectable({ providedIn: 'root' })
 export class TransactionService {
 
-    private readonly transactionApiUrl = `${environment.apiBase}/Transacion`;
+    private readonly transactionApiUrl = `${environment.apiBase}/Transaction`;
     constructor(private http: HttpClient) {
 
     }
