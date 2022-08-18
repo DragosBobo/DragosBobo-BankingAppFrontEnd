@@ -8,6 +8,7 @@ import { AccountService } from './account/service/account.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCardModule} from '@angular/material/card';
 import { TransactionComponent } from './transaction/transaction.component';
 import { TransactionService } from './transaction/service/transaction.service';
 import { UserComponent } from './user/user.component';
@@ -25,7 +26,9 @@ import { UserService } from './user/service/user.service';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCardModule
+  
   ],
   providers: [AccountService,TransactionService,UserService],
   bootstrap: [AppComponent]

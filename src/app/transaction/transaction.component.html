@@ -1,17 +1,11 @@
-
-<p>List with every transactions : </p>
-
-<li *ngFor="let transaction of transactions">
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{transaction.totalAmount}}
-          </mat-panel-title>
-          <mat-panel-description>
-
-         {{transaction.categoryName}} 
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        
-      </mat-expansion-panel>
-</li>
+<mat-card class="transactionHeader">
+  <p>List with every transactions : </p>
+</mat-card>
+<mat-card>
+  <li *ngFor="let transaction of transactions">
+    <mat-card>
+      <mat-card-title>Cateory of transaction : {{transaction.categoryName}} </mat-card-title>
+      <mat-card-subtitle>Amount : {{transaction.totalAmount}} $ </mat-card-subtitle>
+    </mat-card>
+  </li>
+</mat-card>
