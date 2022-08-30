@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,13 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { TransactionService } from './transaction/service/transaction.service';
 import { UserComponent } from './user/user.component';
 import { UserService } from './user/service/user.service';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes : Routes = [
+{path : 'transaction' ,component: TransactionComponent},
+{path : 'user' ,component: UserComponent},
+{path : 'account' ,component: AccountComponent},
+]
 
 @NgModule({
   declarations: [
@@ -27,7 +34,8 @@ import { UserService } from './user/service/user.service';
     HttpClientModule,
     BrowserAnimationsModule,
     MatExpansionModule,
-    MatCardModule
+    MatCardModule,
+    RouterModule.forRoot(appRoutes)
   
   ],
   providers: [AccountService,TransactionService,UserService],
