@@ -3,14 +3,14 @@
     display: flex;
     padding: 15px 0;
     justify-content: space-evenly;
-   
+    border-bottom: 2px solid rgba(240, 240, 240, 0.434);
 }
 .navbar>li{
     background-color: rgb(227, 227, 227);
     padding:10px 20px;
     cursor: pointer;
-    border-radius: 5px 15px;
-    background-image: linear-gradient(to right,#99d6ff, #ccebff);
+    border-radius: 5px 0;
+    background-color: #e6f5ff ;
     transition:  1s ease-out ;
    
 }
@@ -22,4 +22,13 @@
     text-decoration: none;
     // color: #117ACA;
     color: black;
+}
+.card{
+    height: fit-content;
+    min-height: 70%;
+    background-image: linear-gradient(to right,#ccebff, #e6f5ff);
+    width: 80%;
+    margin: auto;
+    border-radius: 15px 0;
+    padding-top: 15px;
 }

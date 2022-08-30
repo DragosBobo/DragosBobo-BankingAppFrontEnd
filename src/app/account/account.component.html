@@ -1,8 +1,8 @@
 <div class="mainCard">
-  <mat-card id="accountHeader">List with every account :</mat-card>
-  <mat-card>
+  <div class="mainCard__title">List with accounts </div>
+  <mat-card id="mainCard_matCard">
     <li *ngFor="let account of accounts">
-      <mat-expansion-panel>
+      <mat-expansion-panel >
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{account.iban}}
