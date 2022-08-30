@@ -16,7 +16,7 @@ export class TransactionService {
         return this.http.get<TransactionModel[]>(`${this.transactionApiUrl}`);
     }
     //get all transactions for one account Id
-    fetchTransactionsById(id: string): Observable<TransactionModel[]> {
+    fetchTransactionsByAccountId(id:string) : Observable<TransactionModel[]>{
         return this.http.get<TransactionModel[]>(`${this.transactionApiUrl}/${id}`);
     }
     //create a transaction 

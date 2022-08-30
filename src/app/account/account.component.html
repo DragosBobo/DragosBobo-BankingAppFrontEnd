@@ -1,20 +1,25 @@
-
-<p>List with every account : </p>
-
-<li *ngFor="let account of accounts">
-    <mat-expansion-panel>
+<div class="mainCard">
+  <mat-card id="accountHeader">List with every account :</mat-card>
+  <mat-card>
+    <li *ngFor="let account of accounts">
+      <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{account.iban}}
           </mat-panel-title>
           <mat-panel-description>
 
-            Type of account : {{account.accountType}} 
+            Type of account : {{account.accountType}}
+
           </mat-panel-description>
         </mat-expansion-panel-header>
-        
+
         <ng-template matExpansionPanelContent>
-          Transactions 
+
+          <app-transaction id={{account.accountId}}></app-transaction>
+
         </ng-template>
       </mat-expansion-panel>
-</li>
+    </li>
+  </mat-card>
+</div>
