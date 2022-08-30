@@ -9,13 +9,17 @@
     background-color: rgb(227, 227, 227);
     padding:10px 20px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 5px 15px;
+    background-image: linear-gradient(to right,#99d6ff, #ccebff);
+    transition:  1s ease-out ;
    
 }
 .navbar>li:hover{
-    background-color: rgba(240, 239, 239, 0.719)
+    background-color: rgba(240, 239, 239, 0.719);
+    scale: 1.2;
 }
 .navbar>li>a{
     text-decoration: none;
-    color: #117ACA;
+    // color: #117ACA;
+    color: black;
 }
