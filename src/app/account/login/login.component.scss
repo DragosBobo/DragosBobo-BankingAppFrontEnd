@@ -2,12 +2,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: blue;
-    width: 60vw;
+    width: 35vw;
     height: 70vh;
     .form{
         display: flex;
         flex-direction: column;
-        background-color: red;
+        .mat-form-field{
+            margin: 10px;
+        }
+        button{
+            margin: 10px;
+        }
     }
 }
