@@ -8,7 +8,7 @@ interface CreateUserModel {
     confirmedPassword: string;
 }
 interface LoginUserModel {
-    email: FormControl<string>;
-    password: FormControl<string>;
+    email: string;
+    password: string;
 }
 export { CreateUserModel ,LoginUserModel}
