@@ -1,4 +1,4 @@
-
+import { FormBuilder,FormGroup,FormControl } from '@angular/forms';
 interface CreateUserModel {
     firstName: string;
     lastName: string;
@@ -8,7 +8,7 @@ interface CreateUserModel {
     confirmedPassword: string;
 }
 interface LoginUserModel {
-    email: string;
-    password: string;
+    email: FormControl<string>;
+    password: FormControl<string>;
 }
 export { CreateUserModel ,LoginUserModel}
