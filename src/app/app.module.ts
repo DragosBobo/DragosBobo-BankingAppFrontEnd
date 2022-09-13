@@ -14,6 +14,7 @@ import { TransactionService } from './transaction/service/transaction.service';
 import { UserComponent } from './user/user.component';
 import { UserService } from './user/service/user.service';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './account/login/login.component';
 
 const appRoutes : Routes = [
 {path : 'transaction' ,component: TransactionComponent},
@@ -26,7 +27,8 @@ const appRoutes : Routes = [
     AppComponent,
     AccountComponent,
     TransactionComponent,
-    UserComponent
+    UserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
