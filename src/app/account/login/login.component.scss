@@ -1,0 +1,13 @@
+.form-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+    width: 60vw;
+    height: 70vh;
+    .form{
+        display: flex;
+        flex-direction: column;
+        background-color: red;
+    }
+}
