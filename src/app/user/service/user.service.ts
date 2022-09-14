@@ -21,6 +21,4 @@ export class UserService {
   loginUser(user: FormGroup) : Observable<string> {
     return this.http.post<string>(`${this.userApiUrl}/login`,user.value,{responseType: 'text'as'json'});
   }
- 
-
 }
