@@ -10,9 +10,9 @@ import { UserService } from '../service/user.service';
 export class LoginComponent implements OnInit {
   loginForm !: FormGroup;
   token !: string;
-  constructor(private formBuilder: FormBuilder, private login: UserService,private router:Router) { }
+  constructor(private formBuilder: FormBuilder, private login: UserService, private router: Router) { }
 
- 
+
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: [""],
@@ -20,6 +20,6 @@ export class LoginComponent implements OnInit {
     })
   }
   Login() {
-    this.login.loginUser(this.loginForm).subscribe(res =>{ localStorage.setItem("token", res);this.router.navigate(['/account'])});
+    this.login.loginUser(this.loginForm).subscribe(res => { localStorage.setItem("token", res); this.router.navigate(['/account']) });
   }
 }

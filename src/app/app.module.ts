@@ -18,11 +18,12 @@ import { UserService } from './user/service/user.service';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './user/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TokenInterceptor} from './user/service/token.interceptor';
+import { TokenInterceptor } from './user/service/token.interceptor';
+import { GuardService } from './app-guard.service';
 const appRoutes: Routes = [
   { path: 'transaction', component: TransactionComponent },
   { path: 'login', component: LoginComponent },
-  { path:'account',component:AccountComponent},
+  { path: 'account', component: AccountComponent, canActivate: [GuardService] },
 ]
 
 @NgModule({
@@ -47,7 +48,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
 
   ],
-  providers: [AccountService, TransactionService, UserService,{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptor,multi:true}],
+  providers: [AccountService, TransactionService, UserService, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, GuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

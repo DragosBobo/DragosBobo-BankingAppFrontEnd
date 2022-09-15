@@ -1,9 +1,17 @@
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { Injectable } from "@angular/core";
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Observable } from "rxjs";
 
-
+@Injectable()
 export class GuardService implements CanActivate {
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean  {
-        return false;
+    constructor(private route: Router) { }
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        const isAuth = localStorage.getItem("token");
+        if (isAuth) {
+            return true;
+        } else {
+            this.route.navigate(["/login"]);
+            return false
+        }
     }
 }

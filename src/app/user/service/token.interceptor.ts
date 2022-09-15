@@ -11,14 +11,14 @@ import { UserService } from './user.service';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private authService:UserService) {}
+  constructor(private authService: UserService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = localStorage.getItem('token');
-    if(token){
-    request = request.clone({
-     headers: request.headers.set('Authorization',`bearer ${token}` )
-    });
+    if (token) {
+      request = request.clone({
+        headers: request.headers.set('Authorization', `bearer ${token}`)
+      });
     }
     return next.handle(request);
   }
