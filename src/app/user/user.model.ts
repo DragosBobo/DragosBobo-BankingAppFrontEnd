@@ -1,14 +1,6 @@
-import { FormBuilder,FormGroup,FormControl } from '@angular/forms';
-interface CreateUserModel {
-    firstName: string;
-    lastName: string;
-    userName: string;
-    email: string;
-    password: string;
-    confirmedPassword: string;
+
+export interface IUserModel{
+    email :string;
+    userId :string;
+    username :string;
 }
-interface LoginUserModel {
-    email: string;
-    password: string;
-}
-export { CreateUserModel ,LoginUserModel}

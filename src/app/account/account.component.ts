@@ -4,7 +4,7 @@ import { AccountService } from './service/account.service';
 import { AccountId, MockAccount } from './account.mock';
 import { TransactionService } from '../transaction/service/transaction.service';
 import { TransactionModel } from '../transaction/transaction.model';
-
+import { UserService } from '../user/service/user.service';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -13,14 +13,13 @@ import { TransactionModel } from '../transaction/transaction.model';
 export class AccountComponent implements OnInit {
   accounts: AccountModel[] = [];
   accountTransactions : TransactionModel[]=[];
- 
+  
 
-  constructor(public accountService: AccountService, public transactionService: TransactionService) { }
+  constructor(private userService : UserService,public accountService: AccountService, public transactionService: TransactionService) { }
 
   ngOnInit(): void {
-    this.accountService.fetchAccounts().subscribe(response => {
+    this.accountService.getAccounts(this.userService.currentUser.userId).subscribe(response => {
       this.accounts = response;
-      
 
     });
     

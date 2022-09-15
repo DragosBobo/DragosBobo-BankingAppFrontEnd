@@ -25,4 +25,8 @@ export class AccountService {
     updateAccount(updateAccount: CreateAccountModel): Observable<string> {
         return this.http.put<string>(this.accountApiUrl, updateAccount);
     }
+    //get accounts by user id
+    getAccounts(id:string):Observable<AccountModel[]>{
+        return this.http.get<AccountModel[]>(`${this.accountApiUrl}/${id}`);
+    }
 }
