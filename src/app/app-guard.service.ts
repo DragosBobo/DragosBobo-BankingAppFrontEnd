@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from "rxjs";
 
 @Injectable()
-export class GuardService implements CanActivate {
+export class AuthenticationGuard  implements CanActivate {
     constructor(private route: Router) { }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const isAuth = localStorage.getItem("token");

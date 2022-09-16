@@ -11,7 +11,7 @@ import { IUserModel } from '../user.model';
 export class LoginComponent implements OnInit {
   loginForm !: FormGroup;
   token !: string;
-  constructor(private formBuilder: FormBuilder, private login: UserService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -19,8 +19,7 @@ export class LoginComponent implements OnInit {
       password: [""]
     })
   }
-  Login() {
-    this.login.loginUser(this.loginForm).subscribe(res => {console.log(res);this.router.navigate(["/account"])});
+  login() {
+    this.userService.loginUser(this.loginForm).subscribe(res => { console.log(res); this.router.navigate(["/account"]) });
   }
- 
 }

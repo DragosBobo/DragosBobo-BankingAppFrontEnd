@@ -1,5 +1,5 @@
 <mat-card class="form-card">
-    <form class="form" [formGroup]="loginForm" (ngSubmit)="Login()" novalidate>
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
             <input type="email" matInput placeholder="Ex. pat@example.com" name="email" formControlName="email">

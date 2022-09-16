@@ -11,20 +11,14 @@ import { UserService } from '../user/service/user.service';
 })
 export class AccountComponent implements OnInit {
   accounts: AccountModel[] = [];
-  accountTransactions : TransactionModel[]=[];
-  public name: string = this.userService.currentUser.username;
+  accountTransactions: TransactionModel[] = [];
+  name: string = this.userService.currentUser.username;
 
-  constructor(public userService : UserService,public accountService: AccountService, public transactionService: TransactionService) { }
+  constructor(private userService: UserService, private accountService: AccountService, private transactionService: TransactionService) { }
 
   ngOnInit(): void {
-    this.accountService.getAccounts(this.userService.currentUser.userId).subscribe(response => {
-      this.accounts = response;
-      
+    this.accountService.getAccounts(this.userService.currentUser.userId).subscribe(accounts => {
+      this.accounts = accounts;
     });
-    // this.accountService.createAccounts(MockAccount).subscribe();
-    // this.accountService.deleteAccount(AccountId).subscribe();
-    // this.accountService.updateAccount(AccountId).subscribe();
   }
- 
-
 }
