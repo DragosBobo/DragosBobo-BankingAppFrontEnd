@@ -14,12 +14,13 @@ export class AccountComponent implements OnInit {
   accounts: AccountModel[] = [];
   accountTransactions: TransactionModel[] = [];
   name: string = this.userService.currentUser.username;
-
+  id = localStorage.getItem("id");
   constructor(private userService: UserService, private router: Router, private accountService: AccountService, private transactionService: TransactionService) { }
 
   ngOnInit(): void {
-    this.accountService.getAccounts(this.userService.currentUser.userId).subscribe(accounts => {
+    if(this.id!=null){
+    this.accountService.getAccounts(this.id).subscribe(accounts => {
       this.accounts = accounts;
     });
-  }
+  }}
 }

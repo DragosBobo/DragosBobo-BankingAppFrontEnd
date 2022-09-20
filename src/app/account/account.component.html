@@ -1,6 +1,8 @@
 <div class="main">
   <div class="topContainer">
-    <div class="accountList">
+    <h4 >List of all accounts : </h4>
+    <div  class="accountList">
+      
       <li *ngFor="let account of accounts">
         <mat-card>{{account.iban}}</mat-card>
       </li>
@@ -11,7 +13,7 @@
   </div>
   <mat-card class="expandedViewAccounts">
     <li *ngFor="let account of accounts">
-      <mat-expansion-panel>
+      <mat-expansion-panel >
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{account.iban}}
@@ -25,8 +27,8 @@
 
         <ng-template matExpansionPanelContent>
 
-          <app-transaction id={{account.accountId}}></app-transaction>
-
+          <app-transaction routerLink="/transaction" id={{account.accountId}}></app-transaction>
+          
         </ng-template>
       </mat-expansion-panel>
 

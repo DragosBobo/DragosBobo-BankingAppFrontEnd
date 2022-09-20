@@ -36,6 +36,7 @@ export class UserService {
       this.currentUser.userId = decodedToken.nameid;
       this.currentUser.username = decodedToken.given_name;
       localStorage.setItem("token", response);
+      localStorage.setItem("id",this.currentUser.userId);
       return this.currentUser})
     );
   }
