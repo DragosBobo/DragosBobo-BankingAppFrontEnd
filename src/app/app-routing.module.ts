@@ -6,9 +6,10 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { LoginComponent } from './user/login/login.component';
 
 const routes: Routes = [
+  { path: '', component: AccountComponent, canActivate: [AuthenticationGuard] },
   { path: 'transaction', component: TransactionComponent },
   { path: 'login', component: LoginComponent },
-  { path:'account',component:AccountComponent,canActivate:[AuthenticationGuard]},
+  { path: 'account', component: AccountComponent, canActivate: [AuthenticationGuard] },
 ];
 
 @NgModule({
