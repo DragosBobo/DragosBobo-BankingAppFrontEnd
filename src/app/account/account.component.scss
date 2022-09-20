@@ -1,5 +1,41 @@
-
-.main{
+.main {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+
+    .topContainer {
+        width: 98%;
+        height: 46vh;
+        display: flex;
+        justify-content: space-between;
+        margin: 15px;
+
+        .accountList {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            overflow-y: auto;
+            margin-left: 15px;
+
+            mat-card {
+                background-color: rgb(210, 230, 237, 10%);
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        .userPanel {
+            margin-left: 0;
+            background-color: rgb(210, 230, 237, 10%);
+            height: 5%;
+            margin-right: 15px;
+        }
+    }
+
+    .expandedViewAccounts {
+        width: 95.5%;
+        height: 45vh;
+        margin: 0 15px;
+        overflow-y: auto;
+    }
 }

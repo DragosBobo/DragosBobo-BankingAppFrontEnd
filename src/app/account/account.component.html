@@ -24,7 +24,35 @@
   </mat-card> 
 </div>   -->
 <div class="main">
-  <div>User Icon </div>
-  <mat-card>List of accounts</mat-card>
-  <mat-card>Expanded view for accounts</mat-card>
+  <div class="topContainer">
+    <div class="accountList">
+      <li *ngFor="let account of accounts">
+        <mat-card>{{account.iban}}</mat-card>
+      </li>
+    </div>
+    <mat-card class="userPanel" onclick="goToUser()">User panel</mat-card>
+  </div>
+  <mat-card class="expandedViewAccounts">
+    <li *ngFor="let account of accounts">
+      <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{account.iban}}
+          </mat-panel-title>
+          <mat-panel-description>
+
+            Type of account : {{account.accountType}}
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+
+          <app-transaction id={{account.accountId}}></app-transaction>
+
+        </ng-template>
+      </mat-expansion-panel>
+
+    </li>
+  </mat-card>
 </div>
