@@ -19,6 +19,8 @@ import { LoginComponent } from './user/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './user/service/token.interceptor';
 import { AuthenticationGuard } from './app-guard.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { AuthenticationGuard } from './app-guard.service';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatIconModule, 
+    MatTableModule
   ],
   providers: [AccountService, TransactionService, UserService, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthenticationGuard],
   bootstrap: [AppComponent]

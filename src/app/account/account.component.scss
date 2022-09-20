@@ -24,18 +24,21 @@
             }
         }
 
-        .userPanel {
-            margin-left: 0;
-            background-color: rgb(210, 230, 237, 10%);
-            height: 5%;
-            margin-right: 15px;
-        }
-    }
 
-    .expandedViewAccounts {
-        width: 95.5%;
-        height: 45vh;
-        margin: 0 15px;
-        overflow-y: auto;
+
+    
+
+    button {
+        height: 15%;
+        margin-right: 15px;
+        margin-top: 15px;
     }
+}
+
+.expandedViewAccounts {
+    width: 95.5%;
+    height: 45vh;
+    margin: 0 15px;
+    overflow-y: auto;
+}
 }

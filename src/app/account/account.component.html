@@ -1,28 +1,3 @@
-<!-- <div class="mainCard">
-  <div class="mainCard__title" > List with every accounts for this particular user : </div>
- <mat-card id="mainCard_matCard">
-    <li *ngFor="let account of accounts">
-      <mat-expansion-panel >
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{account.iban}}
-          </mat-panel-title>
-          <mat-panel-description>
-
-            Type of account : {{account.accountType}}
-
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-
-        <ng-template matExpansionPanelContent>
-
-          <app-transaction id={{account.accountId}}></app-transaction>
-
-        </ng-template>
-      </mat-expansion-panel>
-    </li>
-  </mat-card> 
-</div>   -->
 <div class="main">
   <div class="topContainer">
     <div class="accountList">
@@ -30,11 +5,13 @@
         <mat-card>{{account.iban}}</mat-card>
       </li>
     </div>
-    <mat-card class="userPanel" onclick="goToUser()">User panel</mat-card>
+    <button mat-raised-button color="primary" id="userButton" routerLink="/user">
+      <mat-icon>account_circle</mat-icon>
+    </button>
   </div>
   <mat-card class="expandedViewAccounts">
     <li *ngFor="let account of accounts">
-      <mat-expansion-panel >
+      <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{account.iban}}
