@@ -3,7 +3,7 @@
     <h1>List of all accounts : </h1>
     <div class="accountListContainer">
       <li *ngFor="let account of accounts">
-        <mat-card>{{account.iban}}</mat-card>
+        <mat-card> <mat-icon>credit_card</mat-icon>{{account.iban}}</mat-card>
       </li>
     </div>
     <button mat-raised-button color="primary" id="userButton" routerLink="/user">

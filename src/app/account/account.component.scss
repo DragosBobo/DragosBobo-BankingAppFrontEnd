@@ -22,12 +22,14 @@
             overflow-y: auto;
             margin-left: 15px;
             margin-top: 15px;
+            padding-top: 150px;
             mat-card {
                 background-color: #3f51b5;
                 display: flex;
-                justify-content: center;
+                justify-content: space-between;
                 margin-top: 25px;
                 color: white;
+                padding: 50px;
             }
         }
         button {
