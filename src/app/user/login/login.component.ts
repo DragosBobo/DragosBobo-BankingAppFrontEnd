@@ -20,6 +20,6 @@ export class LoginComponent implements OnInit {
     })
   }
   login() {
-    this.userService.loginUser(this.loginForm).subscribe(res => { console.log(res); this.router.navigate(["/account"]) });
+    this.userService.loginUser(this.loginForm).subscribe(res => { console.log(res); this.router.navigate(["/account"]).then(()=>window.location.reload()) });
   }
 }
