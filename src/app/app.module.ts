@@ -15,12 +15,10 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { TransactionService } from './transaction/service/transaction.service';
 import { UserComponent } from './user/user.component';
 import { UserService } from './user/service/user.service';
-import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './user/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './user/service/token.interceptor';
 import { AuthenticationGuard } from './app-guard.service';
-
 
 @NgModule({
   declarations: [
