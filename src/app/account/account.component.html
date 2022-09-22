@@ -36,7 +36,9 @@
   </div>
   <div class="accounts" >
     
-  <mat-card *ngFor="let account of accounts">
+  <ng-container *ngFor="let account of accounts" >
+    <ng-container *ngIf="account.accountType=='Debit';else Credit">
+    <mat-card >
    <h6>account</h6>
    <div>
    <mat-icon>sim_card</mat-icon>
@@ -44,8 +46,19 @@
   </div>
    <h4>{{account.iban}}</h4>
   </mat-card>
-
-
+  </ng-container>
+  <ng-template #Credit >
+    <mat-card class="credit" >
+      <h6>account</h6>
+      <div>
+      <mat-icon>sim_card</mat-icon>
+      <h6>{{account.accountType}}</h6>
+     </div>
+      <h4>{{account.iban}}</h4>
+     </mat-card>
+  </ng-template>
+  </ng-container>
+  
 </div>
  
 </div>
