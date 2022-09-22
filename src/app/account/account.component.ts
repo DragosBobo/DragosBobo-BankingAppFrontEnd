@@ -18,9 +18,10 @@ export class AccountComponent implements OnInit {
   constructor(private userService: UserService, private router: Router, private accountService: AccountService, private transactionService: TransactionService) { }
 
   ngOnInit(): void {
-    if(this.id!=null){
-    this.accountService.getAccounts(this.id).subscribe(accounts => {
-      this.accounts = accounts;
-    });
-  }}
+    if (this.id != null) {
+      this.accountService.getAccounts(this.id).subscribe(accounts => {
+        this.accounts = accounts;
+      });
+    }
+  }
 }

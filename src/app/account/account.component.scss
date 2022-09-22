@@ -1,49 +1,47 @@
 .main {
-           background-color:#cfd6e0;
-    
+    background-color: #cfd6e0;
     display: flex;
     flex-direction: column;
     height: 100%;
-    .navbar{
+    .navbar {
         padding-left: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
         display: flex-end;
     }
-    .accounts{
+    .accounts {
         display: flex;
         width: 85%;
         height: 90%;
         margin: auto;
         flex-wrap: wrap;
         overflow-y: auto;
-        .credit{
+        .credit {
             background-color: #23a82c;
         }
-       mat-card{
-        flex:0 1 calc(20%);
-        margin: auto;
-        margin-top: 10px;
-        background-color: #235ba8;
-        transition: all ease 1s;
-        color: rgba(255, 255, 255, 0.7);
-        cursor: pointer;
-        
-        h6{
-            color: whitesmoke;
+        mat-card {
+            flex: 0 1 calc(20%);
+            margin: auto;
+            margin-top: 10px;
+            background-color: #235ba8;
+            transition: all ease 1s;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            h6 {
+                color: whitesmoke;
+            }
+            div {
+                display: flex;
+                justify-content: space-between;
+                height: 25px;
+
+                mat-icon {
+                    color: antiquewhite;
+                }
+            }
         }
-        div{
-            display: flex;
-            justify-content: space-between;
-            height: 25px;
-           mat-icon{
-            color: antiquewhite;
-           }
+        :hover {
+            z-index: 100;
         }
-       }:hover{
-        
-        z-index: 100;
-       }
-        
     }
 }

@@ -1,64 +1,31 @@
-<!-- <div class="main">
-  <div class="topContainer">
-    <h1>List of all accounts : </h1>
-    <div class="accountListContainer">
-      <li *ngFor="let account of accounts">
-        <mat-card> <mat-icon>credit_card</mat-icon>{{account.iban}}</mat-card>
-      </li>
-    </div>
-    <button mat-raised-button color="primary" id="userButton" routerLink="/user">
-      <mat-icon>account_circle</mat-icon>
-    </button>
-  </div>
-  <mat-card class="botContainer">
-    <li *ngFor="let account of accounts">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{account.iban}}
-          </mat-panel-title>
-          <mat-panel-description>
-            Type of account : {{account.accountType}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <ng-template matExpansionPanelContent>
-          <app-transaction routerLink="/transaction" id={{account.accountId}}></app-transaction>
-        </ng-template>
-      </mat-expansion-panel>
-    </li>
-  </mat-card>
-</div> -->
 <div class="main">
   <div class="navbar">
     <button mat-raised-button color="primary" id="userButton" routerLink="/user">
       <mat-icon>account_circle</mat-icon>
     </button>
   </div>
-  <div class="accounts" >
-    
-  <ng-container *ngFor="let account of accounts" >
-    <ng-container *ngIf="account.accountType=='Debit';else Credit">
-    <mat-card >
-   <h6>account</h6>
-   <div>
-   <mat-icon>sim_card</mat-icon>
-   <h6>{{account.accountType}}</h6>
+  <div class="accounts">
+    <ng-container *ngFor="let account of accounts">
+      <ng-container *ngIf="account.accountType=='Debit';else Credit">
+        <mat-card routerLink="/transaction/{{account.accountId}}">
+          <h6>account</h6>
+          <div>
+            <mat-icon>sim_card</mat-icon>
+            <h6>{{account.accountType}}</h6>
+          </div>
+          <h4>{{account.iban}}</h4>
+        </mat-card>
+      </ng-container>
+      <ng-template #Credit>
+        <mat-card class="credit" routerLink="/transaction/{{account.accountId}}">
+          <h6>account</h6>
+          <div>
+            <mat-icon>sim_card</mat-icon>
+            <h6>{{account.accountType}}</h6>
+          </div>
+          <h4>{{account.iban}}</h4>
+        </mat-card>
+      </ng-template>
+    </ng-container>
   </div>
-   <h4>{{account.iban}}</h4>
-  </mat-card>
-  </ng-container>
-  <ng-template #Credit >
-    <mat-card class="credit" >
-      <h6>account</h6>
-      <div>
-      <mat-icon>sim_card</mat-icon>
-      <h6>{{account.accountType}}</h6>
-     </div>
-      <h4>{{account.iban}}</h4>
-     </mat-card>
-  </ng-template>
-  </ng-container>
-  
-</div>
- 
 </div>
