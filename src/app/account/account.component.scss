@@ -3,12 +3,14 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+
     .navbar {
         padding-left: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
         display: flex-end;
     }
+
     .accounts {
         display: flex;
         width: 85%;
@@ -16,20 +18,26 @@
         margin: auto;
         flex-wrap: wrap;
         overflow-y: auto;
+
         .credit {
             background-color: #23a82c;
         }
+
         mat-card {
+            z-index: 0;
             flex: 0 1 calc(20%);
             margin: auto;
             margin-top: 10px;
             background-color: #235ba8;
             transition: all ease 1s;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             cursor: pointer;
+
             h6 {
                 color: whitesmoke;
+
             }
+
             div {
                 display: flex;
                 justify-content: space-between;
@@ -38,10 +46,30 @@
                 mat-icon {
                     color: antiquewhite;
                 }
+
             }
         }
-        :hover {
-            z-index: 100;
+
+        :hover .viewDetails {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: -20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all ease 2s;
+            color: white;
+            backdrop-filter: blur(1px);
+
+        }
+
+        .viewDetails {
+
+            display: none;
+
         }
     }
 }

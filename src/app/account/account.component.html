@@ -11,16 +11,19 @@
           <h6>account</h6>
           <div>
             <mat-icon>sim_card</mat-icon>
+            <span> <h2 class="viewDetails">View Details</h2></span>
             <h6>{{account.accountType}}</h6>
           </div>
           <h4>{{account.iban}}</h4>
         </mat-card>
+       
       </ng-container>
       <ng-template #Credit>
         <mat-card class="credit" routerLink="/transaction/{{account.accountId}}">
           <h6>account</h6>
           <div>
             <mat-icon>sim_card</mat-icon>
+            <span> <h2 class="viewDetails">View Details</h2></span>
             <h6>{{account.accountType}}</h6>
           </div>
           <h4>{{account.iban}}</h4>
