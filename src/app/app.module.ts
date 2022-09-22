@@ -22,6 +22,7 @@ import { AuthenticationGuard } from './app-guard.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     AppRoutingModule,
     MatIconModule,
     MatTableModule, 
-    MatGridListModule
+    MatGridListModule,
+    MatPaginatorModule
   ],
   providers: [AccountService, TransactionService, UserService, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthenticationGuard],
   bootstrap: [AppComponent]
