@@ -23,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { IbanPipe } from './pipes/iban.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     AccountComponent,
     TransactionComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    IbanPipe
   ],
   imports: [
     BrowserModule,
