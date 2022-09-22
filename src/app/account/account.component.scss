@@ -1,47 +1,40 @@
 .main {
+           background-color:#cfd6e0;
+    
     display: flex;
     flex-direction: column;
-    .topContainer {
-        width: 98%;
-        height: 46vh;
-        display: flex;
-        justify-content: space-evenly;
-        margin: 15px;
-        text-align: center;
-        h1 {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 25px;
-        }
-        .accountListContainer {
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            overflow-y: auto;
-            margin-left: 15px;
-            margin-top: 15px;
-            padding-top: 150px;
-            mat-card {
-                background-color: #3f51b5;
-                display: flex;
-                justify-content: space-between;
-                margin-top: 25px;
-                color: white;
-                padding: 50px;
-            }
-        }
-        button {
-            height: 15%;
-            margin-right: 15px;
-            margin-top: 15px;
-        }
+    height: 100%;
+    .navbar{
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        display: flex-end;
     }
-    .botContainer {
-        width: 95.5%;
-        height: 45vh;
-        margin: 0 15px;
+    .accounts{
+        display: flex;
+        width: 85%;
+        height: 90%;
+        margin: auto;
+        flex-wrap: wrap;
         overflow-y: auto;
+       mat-card{
+        flex:0 1 calc(20%);
+        margin: auto;
+        margin-top: 10px;
+        background-color: #235ba8;
+        color: rgba(255, 255, 255, 0.7);
+        h6{
+            color: whitesmoke;
+        }
+        div{
+            display: flex;
+            justify-content: space-between;
+            height: 25px;
+           mat-icon{
+            color: antiquewhite;
+           }
+        }
+       }
+        
     }
 }

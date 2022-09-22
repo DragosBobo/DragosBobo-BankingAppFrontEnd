@@ -21,6 +21,7 @@ import { TokenInterceptor } from './user/service/token.interceptor';
 import { AuthenticationGuard } from './app-guard.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -42,8 +43,9 @@ import { MatTableModule } from '@angular/material/table';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    MatIconModule, 
-    MatTableModule
+    MatIconModule,
+    MatTableModule, 
+    MatGridListModule
   ],
   providers: [AccountService, TransactionService, UserService, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthenticationGuard],
   bootstrap: [AppComponent]

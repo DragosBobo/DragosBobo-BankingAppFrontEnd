@@ -1,4 +1,4 @@
-<div class="main">
+<!-- <div class="main">
   <div class="topContainer">
     <h1>List of all accounts : </h1>
     <div class="accountListContainer">
@@ -27,4 +27,25 @@
       </mat-expansion-panel>
     </li>
   </mat-card>
+</div> -->
+<div class="main">
+  <div class="navbar">
+    <button mat-raised-button color="primary" id="userButton" routerLink="/user">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+  <div class="accounts" >
+    
+  <mat-card *ngFor="let account of accounts">
+   <h6>account</h6>
+   <div>
+   <mat-icon>sim_card</mat-icon>
+   <h6>{{account.accountType}}</h6>
+  </div>
+   <h4>{{account.iban}}</h4>
+  </mat-card>
+
+
+</div>
+ 
 </div>
