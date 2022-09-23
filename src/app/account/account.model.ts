@@ -11,6 +11,6 @@ interface AccountModel{
     iban:string;
     userId:string;
 }
-enum AccountType { Debit, Credit }
-enum Currency { Ron, Euro, Dollar }
-export { AccountModel, CreateAccountModel }
+enum AccountType { Debit = 0, Credit = 1}
+enum Currency { Ron = 0, Euro =1, Dollar=2}
+export { AccountModel, CreateAccountModel ,AccountType,Currency}

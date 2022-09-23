@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AccountModel, CreateAccountModel } from "../account.model";
 
 @Injectable({ providedIn: 'root' })
@@ -14,8 +15,8 @@ export class AccountService {
         return this.http.get<AccountModel[]>(this.accountApiUrl);
     }
     //create accounts
-    createAccounts(addAccount: CreateAccountModel): Observable<string> {
-        return this.http.post<string>(this.accountApiUrl, addAccount);
+    createAccounts(addAccount: FormGroup): Observable<any> {
+        return this.http.post<string>(this.accountApiUrl, addAccount.value, { responseType: 'text' as 'json' });
     }
     //delete account
     deleteAccount(id: string): Observable<string> {

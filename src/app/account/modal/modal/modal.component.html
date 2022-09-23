@@ -1,1 +1,22 @@
-<p>modal works!</p>
+<form [formGroup]="accountForm">
+<mat-form-field>
+    <mat-label>Account Type</mat-label>
+    <mat-select #fontSize [value]="accountTypeValues[0]" formControlName="accountType">
+      <mat-option [value]="accountTypeValues[0]">Debit</mat-option>
+      <mat-option [value]="accountTypeValues[1]">Credit</mat-option>
+    </mat-select>
+  </mat-form-field>
+<mat-form-field>
+    <mat-label>Currency</mat-label>
+    <mat-select #fontSize [value]="currencyValues[0]" formControlName="currency" >
+      <mat-option [value]="currencyValues[1]">Euro</mat-option>
+      <mat-option [value]="currencyValues[0]">Ron</mat-option>
+      <mat-option [value]="currencyValues[2]">Dollar</mat-option>
+    </mat-select>
+        
+  </mat-form-field>
+  <mat-form-field class="iban" >
+    <input formControlName="iban" matInput placeholder="RO****************">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="addAccount()">Add Account</button>
+</form>
