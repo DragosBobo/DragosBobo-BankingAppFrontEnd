@@ -6,6 +6,9 @@ form{
     height: 50vh;
     padding: 15px;
     justify-content: space-evenly;
-    button{
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
     }
 }
