@@ -23,20 +23,34 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
     if (this.id != null) {
       this.accountService.getAccounts(this.id).subscribe(accounts => {
+
         this.accounts = accounts;
-        this.accountSlice=this.accounts.slice(0,4);
+        this.accounts.unshift({
+          "accountId"
+            :
+            "modal",
+          "accountType"
+            :
+            "modal",
+          "currency"
+            :
+            "modal",
+          "iban"
+            :
+            "modal"
+        });
+        this.accountSlice = this.accounts.slice(0, 4);
       });
     }
   }
-  onPageChange(event : PageEvent){
+  onPageChange(event: PageEvent) {
     console.log(event);
     const startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;
-    if(endIndex > this.accounts.length)
-    {endIndex = this.accounts.length;}
-    this.accountSlice = this.accounts.slice(startIndex,endIndex);
+    if (endIndex > this.accounts.length) { endIndex = this.accounts.length; }
+    this.accountSlice = this.accounts.slice(startIndex, endIndex);
   }
-  
+
 }
 
 

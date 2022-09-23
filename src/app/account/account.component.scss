@@ -18,9 +18,22 @@
         margin: auto;
         flex-wrap: wrap;
         overflow-y: auto;
+       .modal{
+        background-color: #23a82c;
+        *{visibility: hidden;}
+        
+        mat-icon{
+            visibility: visible;
+            margin: auto;
+            scale: 2.5;
+            transition: all 2s ease;
+        }
+       }:hover #addIcon{
+        scale:3.5;
+    }
 
         .credit {
-            background-color: #23a82c;
+            background-color: rgb(255, 85, 73);
         }
 
         mat-card {
