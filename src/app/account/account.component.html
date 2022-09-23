@@ -19,7 +19,7 @@
        
       </ng-container>
       <ng-template #Modal> 
-        <mat-card [ngClass]="{'modal':account.accountType=='modal'}">
+        <mat-card (click)="onClickModal()" [ngClass]="{'modal':account.accountType=='modal'}">
           <h6>{{account.accountType}}</h6>
           <div>
             <mat-icon id="addIcon">add_circle_outline</mat-icon>

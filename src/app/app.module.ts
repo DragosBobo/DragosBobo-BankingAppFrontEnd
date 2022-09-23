@@ -24,7 +24,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { IbanPipe } from './pipes/iban.pipe';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { ModalComponent } from './account/modal/modal/modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { IbanPipe } from './pipes/iban.pipe';
     TransactionComponent,
     UserComponent,
     LoginComponent,
-    IbanPipe
+    IbanPipe,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ import { IbanPipe } from './pipes/iban.pipe';
     MatIconModule,
     MatTableModule, 
     MatGridListModule,
-    MatPaginatorModule
+    MatPaginatorModule,MatDialogModule
   ],
   providers: [AccountService, TransactionService, UserService, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthenticationGuard],
   bootstrap: [AppComponent]
