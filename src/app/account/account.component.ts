@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal/modal.component';
-
+import { modal } from './account.model';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -19,6 +19,7 @@ export class AccountComponent implements OnInit {
   accountTransactions: TransactionModel[] = [];
   name: string = this.userService.currentUser.username;
   id = localStorage.getItem("id");
+
   accountSlice: AccountModel[] = [];
   constructor(private userService: UserService,private matRef : MatDialog, private router: Router, private accountService: AccountService, private transactionService: TransactionService) { }
 
@@ -27,20 +28,7 @@ export class AccountComponent implements OnInit {
       this.accountService.getAccounts(this.id).subscribe(accounts => {
 
         this.accounts = accounts;
-        this.accounts.unshift({
-          "accountId"
-            :
-            "modal",
-          "accountType"
-            :
-            "modal",
-          "currency"
-            :
-            "modal",
-          "iban"
-            :
-            "modal"
-        });
+        this.accounts.unshift(modal);
         this.accountSlice = this.accounts.slice(0, 4);
       });
     }
@@ -52,7 +40,7 @@ export class AccountComponent implements OnInit {
     this.accountSlice = this.accounts.slice(startIndex, endIndex);
   }
   onClickModal(){
-    this.matRef.open(ModalComponent);
+    this.matRef.open(ModalComponent).afterClosed().subscribe(val=>{if(val=="Account created with succes ! "){this.ngOnInit()}});
   }
 }
 
