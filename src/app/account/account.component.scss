@@ -9,7 +9,9 @@
         padding-left: 10px;
         padding-top: 10px;
         padding-bottom: 10px;
-        display: flex-end;
+        display: flex;
+        justify-content: space-between;
+        padding-right: 10px;
     }
 
     .accounts {

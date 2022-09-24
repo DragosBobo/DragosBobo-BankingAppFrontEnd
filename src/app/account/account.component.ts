@@ -42,6 +42,9 @@ export class AccountComponent implements OnInit {
   onClickModal(){
     this.matRef.open(ModalComponent).afterClosed().subscribe(val=>{if(val=="Account created with succes ! "){this.ngOnInit()}});
   }
+  logout(){
+    localStorage.clear();
+  }
 }
 
 
