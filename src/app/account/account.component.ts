@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { AccountModel, CreateAccountModel } from './account.model';
 import { AccountService } from './service/account.service';
 import { TransactionService } from '../transaction/service/transaction.service';
@@ -10,28 +10,32 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal/modal.component';
 import { modal } from './account.model';
 import { DeleteModalComponent } from './modal/delete/delete-modal/delete-modal.component';
+import { SubSink } from 'subsink';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnInit, OnDestroy {
   accounts: AccountModel[] = [];
   accountTransactions: TransactionModel[] = [];
   name: string = this.userService.currentUser.username;
   id = localStorage.getItem("id");
+  subs = new SubSink();
 
   accountSlice: AccountModel[] = [];
-  constructor(private userService: UserService,private matRef : MatDialog, private router: Router, private accountService: AccountService, private transactionService: TransactionService) { }
+  constructor(private userService: UserService, private matRef: MatDialog, private router: Router, private accountService: AccountService, private transactionService: TransactionService) { }
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
 
   ngOnInit(): void {
     if (this.id != null) {
-      this.accountService.getAccounts(this.id).subscribe(accounts => {
-
+      this.subs.add(this.accountService.getAccounts(this.id).subscribe(accounts => {
         this.accounts = accounts;
         this.accounts.unshift(modal);
         this.accountSlice = this.accounts.slice(0, 4);
-      });
+      }))
     }
   }
   onPageChange(event: PageEvent) {
@@ -40,14 +44,14 @@ export class AccountComponent implements OnInit {
     if (endIndex > this.accounts.length) { endIndex = this.accounts.length; }
     this.accountSlice = this.accounts.slice(startIndex, endIndex);
   }
-  onClickModal(){
-    this.matRef.open(ModalComponent).afterClosed().subscribe(val=>{if(val=="Account created with succes ! "){this.ngOnInit()}});
+  onClickModal() {
+    this.subs.add(this.matRef.open(ModalComponent).afterClosed().subscribe(val => { if (val == "Account created with succes ! ") { this.ngOnInit() } }))
   }
-  logout(){
+  logout() {
     localStorage.clear();
   }
-  deleteAccount(id:string){
-    this.matRef.open(DeleteModalComponent,{data:id}).afterClosed().subscribe(response=>this.ngOnInit());
+  deleteAccount(id: string) {
+    this.subs.add(this.matRef.open(DeleteModalComponent, { data: id }).afterClosed().subscribe(response => this.ngOnInit()))
   }
 }
 

@@ -16,6 +16,8 @@
 
     .accounts {
         display: flex;
+        grid-template-columns: repeat(4,200px);
+        grid-template-rows: repeat(2,200px);
         width: 85%;
         height: 90%;
         margin: auto;
