@@ -23,7 +23,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { IbanPipe } from './pipes/iban.pipe';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalComponent } from './account/modal/modal/modal.component';
 import {MatSelectModule} from '@angular/material/select';
@@ -35,7 +34,6 @@ import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete
     TransactionComponent,
     UserComponent,
     LoginComponent,
-    IbanPipe,
     ModalComponent,
     DeleteModalComponent
   ],
@@ -54,7 +52,9 @@ import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete
     MatIconModule,
     MatTableModule, 
     MatGridListModule,
-    MatPaginatorModule,MatDialogModule,MatSelectModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [AccountService, TransactionService, UserService, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthenticationGuard],
   bootstrap: [AppComponent]
