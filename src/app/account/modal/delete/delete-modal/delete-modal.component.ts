@@ -14,10 +14,10 @@ export class DeleteModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  Agree(){
+  agree(){
     this.account.deleteAccount(this.accId).subscribe(response=>this.Ref.close(response));
   }
-  dissagree(){
+  disagree(){
     this.Ref.close();
   }
 }
