@@ -27,6 +27,7 @@ import { IbanPipe } from './pipes/iban.pipe';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalComponent } from './account/modal/modal/modal.component';
 import {MatSelectModule} from '@angular/material/select';
+import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import {MatSelectModule} from '@angular/material/select';
     UserComponent,
     LoginComponent,
     IbanPipe,
-    ModalComponent
+    ModalComponent,
+    DeleteModalComponent
   ],
   imports: [
     BrowserModule,

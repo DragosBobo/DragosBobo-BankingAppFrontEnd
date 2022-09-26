@@ -1,0 +1,14 @@
+.mainContainer{
+    width: 350px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    .bottomContainer{
+        display: flex;
+        button{
+            margin: 15px;
+        }
+    }
+}

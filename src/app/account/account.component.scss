@@ -24,8 +24,11 @@
         backdrop-filter: blur(1px);
        .modal{
         background-color: #23a82c;
-        *{visibility: hidden;}
-        
+        width: 150px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         mat-icon{
             visibility: visible;
             margin: auto;
@@ -37,18 +40,32 @@
     }
 
         .credit {
-            background-color: rgb(255, 85, 73);
+            background-color: rgb(22, 145, 69);
         }
 
         mat-card {
             z-index: 0;
             flex: 0 1 calc(20%);
             margin: auto;
+            max-height: 110px;
             background-color: #235ba8;
-            transition: all ease 1s;
             color: rgba(255, 255, 255, 0.8);
+            padding: 25px;
             cursor: pointer;
-
+            .delete{
+                position: relative;
+                bottom: 130px;
+                background-color: rgb(255, 85, 73);
+                height: 90px;
+                left: 180px;
+                display: flex;
+                width: 60px;
+                border-radius: 25px;
+                display: none;
+                mat-icon{
+                    margin: auto;
+                }
+            }
             h6 {
                 color: whitesmoke;
 
@@ -76,19 +93,33 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            transition: all ease 2s;
             color: white;
             backdrop-filter: blur(1px);
 
         }
-
+        mat-card:hover .delete{
+            position: relative;
+                bottom: 210px;
+                background-color: rgb(255, 85, 73);
+                height: 90px;
+                left: 180px;
+                display: flex;
+                width: 60px;
+                border-radius: 25px;
+                mat-icon{
+                    margin: auto;
+                }
+        }
         .viewDetails {
 
             display: none;
 
         }
     }
-   
+   h5{
+    text-align: center;
+    font-weight: 800;
+   }
 }
 @media (max-width:850px) {
     .main{

@@ -9,6 +9,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal/modal.component';
 import { modal } from './account.model';
+import { DeleteModalComponent } from './modal/delete/delete-modal/delete-modal.component';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -44,6 +45,9 @@ export class AccountComponent implements OnInit {
   }
   logout(){
     localStorage.clear();
+  }
+  deleteAccount(id:string){
+    this.matRef.open(DeleteModalComponent,{data:id}).afterClosed().subscribe(response=>this.ngOnInit());
   }
 }
 

@@ -20,7 +20,7 @@ export class AccountService {
     }
     //delete account
     deleteAccount(id: string): Observable<string> {
-        return this.http.delete<string>(`${this.accountApiUrl}?id=${id}`);
+        return this.http.delete<string>(`${this.accountApiUrl}?id=${id}`,{ responseType: 'text' as 'json' });
     }
     //update account 
     updateAccount(updateAccount: CreateAccountModel): Observable<string> {
