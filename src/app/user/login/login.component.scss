@@ -1,17 +1,17 @@
-.form-card{
+.form-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35vw;
+  height: 70vh;
+  .form {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35vw;
-    height: 70vh;
-    .form{
-        display: flex;
-        flex-direction: column;
-        .mat-form-field{
-            margin: 10px;
-        }
-        button{
-            margin: 10px;
-        }
+    flex-direction: column;
+    .mat-form-field {
+      margin: 10px;
     }
+    button {
+      margin: 10px;
+    }
+  }
 }
