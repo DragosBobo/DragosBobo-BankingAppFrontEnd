@@ -11,6 +11,7 @@ import { ModalComponent } from './modal/modal/modal.component';
 import { modal } from './account.model';
 import { DeleteModalComponent } from './modal/delete/delete-modal/delete-modal.component';
 import { SubSink } from 'subsink';
+import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -21,21 +22,20 @@ export class AccountComponent implements OnInit, OnDestroy {
   accountTransactions: TransactionModel[] = [];
   name: string = this.userService.currentUser.username;
   id = localStorage.getItem("id");
-  subs = new SubSink();
-
+  notifier = new Subject();
   accountSlice: AccountModel[] = [];
   constructor(private userService: UserService, private matRef: MatDialog, private router: Router, private accountService: AccountService, private transactionService: TransactionService) { }
   ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    this.notifier.complete();
   }
 
   ngOnInit(): void {
     if (this.id != null) {
-      this.subs.add(this.accountService.getAccounts(this.id).subscribe(accounts => {
+     this.accountService.getAccounts(this.id).pipe(takeUntil(this.notifier)).subscribe(accounts => {
         this.accounts = accounts;
         this.accounts.unshift(modal);
         this.accountSlice = this.accounts.slice(0, 4);
-      }))
+      })
     }
   }
   onPageChange(event: PageEvent) {
@@ -45,13 +45,13 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.accountSlice = this.accounts.slice(startIndex, endIndex);
   }
   onClickModal() {
-    this.subs.add(this.matRef.open(ModalComponent).afterClosed().subscribe(val => { if (val == "Account created with succes ! ") { this.ngOnInit() } }))
+   this.matRef.open(ModalComponent).afterClosed().pipe(takeUntil(this.notifier)).subscribe(val => { if (val == "Account created with succes ! ") { this.ngOnInit() } })
   }
   logout() {
     localStorage.clear();
   }
   deleteAccount(id: string) {
-    this.subs.add(this.matRef.open(DeleteModalComponent, { data: id }).afterClosed().subscribe(response => this.ngOnInit()))
+    this.matRef.open(DeleteModalComponent, { data: id }).afterClosed().pipe(takeUntil(this.notifier)).subscribe(response => this.ngOnInit())
   }
 }
 

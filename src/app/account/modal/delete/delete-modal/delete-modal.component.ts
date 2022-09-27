@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Subject, takeUntil } from 'rxjs';
 import { AccountService } from 'src/app/account/service/account.service';
-import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-delete-modal',
@@ -9,18 +9,21 @@ import { SubSink } from 'subsink';
   styleUrls: ['./delete-modal.component.scss']
 })
 export class DeleteModalComponent implements OnInit, OnDestroy {
+  notifier = new Subject();
   accId !: string;
-  subs = new SubSink();
   constructor(private account: AccountService, private ref: MatDialogRef<DeleteModalComponent>, @Inject(MAT_DIALOG_DATA) public data: string) { this.accId = data }
   ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    this.notifier.complete();
   }
 
   ngOnInit(): void {
   }
 
   agree() {
-    this.subs.add(this.account.deleteAccount(this.accId).subscribe(response => this.ref.close(response)));
+    this.account.deleteAccount(this.accId).pipe(
+      takeUntil(this.notifier)
+
+    ).subscribe(response => this.ref.close(response));
   }
   disagree() {
     this.ref.close();
