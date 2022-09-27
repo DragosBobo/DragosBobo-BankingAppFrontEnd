@@ -1,10 +1,15 @@
 
 <div class="main">
   <div class="header">
-    <button mat-raised-button color="primary" id="userButton" routerLink="/account"> Back</button>
+    <button mat-raised-button color="primary" routerLink="/account"> Back</button>
+    <button mat-raised-button color="warn" > Generate Report</button>
   </div>
  <mat-card>
+  <mat-form-field>
+    <input matInput  placeholder="Filter" autocomplete="off">
+  </mat-form-field>
   <mat-table #table [dataSource]="transactionSlice">
+
     <ng-container matColumnDef="num">
       <mat-header-cell *matHeaderCellDef> num </mat-header-cell>
       <mat-cell *matCellDef="let transaction"> {{transactions.indexOf(transaction)+1}} </mat-cell>
