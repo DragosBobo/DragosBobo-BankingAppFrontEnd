@@ -1,13 +1,13 @@
 <div class="main">
     <div class="header">
           <button mat-raised-button color="primary" routerLink="/account"> Back</button>
-          <button mat-raised-button color="warn" (click)="generateRaport(id)"> Generate Report</button>
+          <button mat-raised-button color="warn" (click)="generateRaport(id)"[value]=""> Generate Report</button>
     </div>
     <mat-card>
       <mat-form-field>
-          <input matInput placeholder="Filter" autocomplete="off">
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
       </mat-form-field>
-          <mat-table #table [dataSource]="transactionSlice">
+          <mat-table #table [dataSource]="dataSource">
                 <ng-container matColumnDef="num">
                       <mat-header-cell *matHeaderCellDef> num </mat-header-cell>
                       <mat-cell *matCellDef="let transaction" > {{transactions.indexOf(transaction)+1}} </mat-cell>
