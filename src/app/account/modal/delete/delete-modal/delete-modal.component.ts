@@ -11,7 +11,7 @@ import { SubSink } from 'subsink';
 export class DeleteModalComponent implements OnInit, OnDestroy {
   accId !: string;
   subs = new SubSink();
-  constructor(private account: AccountService, private Ref: MatDialogRef<DeleteModalComponent>, @Inject(MAT_DIALOG_DATA) public data: string) { this.accId = data }
+  constructor(private account: AccountService, private ref: MatDialogRef<DeleteModalComponent>, @Inject(MAT_DIALOG_DATA) public data: string) { this.accId = data }
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
@@ -20,9 +20,9 @@ export class DeleteModalComponent implements OnInit, OnDestroy {
   }
 
   agree() {
-    this.subs.add(this.account.deleteAccount(this.accId).subscribe(response => this.Ref.close(response)));
+    this.subs.add(this.account.deleteAccount(this.accId).subscribe(response => this.ref.close(response)));
   }
   disagree() {
-    this.Ref.close();
+    this.ref.close();
   }
 }
