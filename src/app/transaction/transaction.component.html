@@ -1,3 +1,38 @@
-  {{id}}
 
-transaction component works
+<div class="main">
+  <div class="header">
+    <button mat-raised-button color="primary" id="userButton" routerLink="/account"> Back</button>
+  </div>
+ <mat-card>
+  <mat-table #table [dataSource]="transactionSlice">
+    <ng-container matColumnDef="num">
+      <mat-header-cell *matHeaderCellDef> num </mat-header-cell>
+      <mat-cell *matCellDef="let transaction"> {{transactions.indexOf(transaction)+1}} </mat-cell>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="totalAmount">
+      <mat-header-cell *matHeaderCellDef> Total Amount </mat-header-cell>
+      <mat-cell *matCellDef="let transaction"> {{transaction.totalAmount}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="categoryName">
+      <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+      <mat-cell *matCellDef="let transaction"> {{transaction.categoryName}} </mat-cell>
+    </ng-container>
+
+   
+
+ 
+    
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+ </mat-card>
+  <mat-paginator [length]="transactions.length"
+            [pageSize]="20"
+            [pageSizeOptions]="[ 5,10,20, 40, 100]"
+            (page)="onPageChange($event)"
+            [showFirstLastButtons]="true">
+</mat-paginator>
+</div>
