@@ -27,6 +27,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ModalComponent } from './account/modal/modal/modal.component';
 import {MatSelectModule} from '@angular/material/select';
 import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete-modal.component';
+import { RaportComponent } from './transaction/modal/raport/raport.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +38,8 @@ import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete
     UserComponent,
     LoginComponent,
     ModalComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    RaportComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,9 @@ import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete
     MatGridListModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [AccountService, TransactionService, UserService, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthenticationGuard],
   bootstrap: [AppComponent]
