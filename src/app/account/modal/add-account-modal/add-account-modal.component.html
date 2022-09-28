@@ -1,0 +1,24 @@
+<form #form="ngForm">
+  <mat-form-field>
+    <mat-label>Account Type</mat-label>
+    <mat-select #fontSize [value]="accountTypeValues[0]" name="type" ngModel>
+      <mat-option [value]="accountTypeValues[0]">Debit</mat-option>
+      <mat-option [value]="accountTypeValues[1]">Credit</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Currency</mat-label>
+    <mat-select #fontSize [value]="currencyValues[0]" name="currency" ngModel>
+      <mat-option [value]="currencyValues[1]">Euro</mat-option>
+      <mat-option [value]="currencyValues[0]">Ron</mat-option>
+      <mat-option [value]="currencyValues[2]">Dollar</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="iban">
+    <input matInput placeholder="RO****************" name="iban" ngModel />
+  </mat-form-field>
+  <div>
+    <button mat-raised-button color="warn" (click)="closeModal()">close</button>
+    <button mat-raised-button color="primary" (click)="addAccount(form.value)">ADD</button>
+  </div>
+</form>

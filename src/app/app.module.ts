@@ -16,17 +16,18 @@ import { TransactionService } from './transaction/service/transaction.service';
 import { UserComponent } from './user/user.component';
 import { UserService } from './user/service/user.service';
 import { LoginComponent } from './user/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { TokenInterceptor } from './user/service/token.interceptor';
 import { AuthenticationGuard } from './app-guard.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatDialogModule} from '@angular/material/dialog';
-import { ModalComponent } from './account/modal/modal/modal.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete-modal.component';
+import { AddAccountModalComponent } from './account/modal/add-account-modal/add-account-modal.component';
+import { LoginButtonComponent } from './user/login/login-button/login-button.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,8 +35,9 @@ import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete
     TransactionComponent,
     UserComponent,
     LoginComponent,
-    ModalComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    AddAccountModalComponent,
+    LoginButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,13 +52,19 @@ import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete
     ReactiveFormsModule,
     AppRoutingModule,
     MatIconModule,
-    MatTableModule, 
+    MatTableModule,
     MatGridListModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
   ],
-  providers: [AccountService, TransactionService, UserService, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthenticationGuard],
-  bootstrap: [AppComponent]
+  providers: [
+    AccountService,
+    TransactionService,
+    UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    AuthenticationGuard,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

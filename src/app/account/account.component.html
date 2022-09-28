@@ -3,9 +3,7 @@
     <button mat-raised-button color="primary" routerLink="/user">
       <mat-icon>account_circle</mat-icon>
     </button>
-    <button mat-raised-button color="warn" routerLink="/login" (click)="logout()">
-      <mat-icon>exit_to_app</mat-icon>
-    </button>
+    <app-login-button></app-login-button>
   </div>
   <div class="accounts">
     <ng-container *ngFor="let account of accountSlice">

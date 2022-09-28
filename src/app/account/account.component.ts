@@ -1,11 +1,4 @@
-import {
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-  Pipe,
-  PipeTransform,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { AccountModel, CreateAccountModel } from './account.model';
 import { AccountService } from './service/account.service';
 import { TransactionService } from '../transaction/service/transaction.service';
@@ -14,10 +7,10 @@ import { UserService } from '../user/service/user.service';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalComponent } from './modal/modal/modal.component';
 import { modal } from './account.model';
 import { DeleteModalComponent } from './modal/delete/delete-modal/delete-modal.component';
 import { Subject, takeUntil } from 'rxjs';
+import { AddAccountModalComponent } from './modal/add-account-modal/add-account-modal.component';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -30,28 +23,13 @@ export class AccountComponent implements OnInit, OnDestroy {
   id = localStorage.getItem('id');
   notifier = new Subject();
   accountSlice: AccountModel[] = [];
-  constructor(
-    private userService: UserService,
-    private matRef: MatDialog,
-    private router: Router,
-    private accountService: AccountService,
-    private transactionService: TransactionService
-  ) {}
+  constructor(private userService: UserService, private matRef: MatDialog, private accountService: AccountService) {}
   ngOnDestroy(): void {
     this.notifier.complete();
   }
 
   ngOnInit(): void {
-    if (this.id != null) {
-      this.accountService
-        .getAccounts(this.id)
-        .pipe(takeUntil(this.notifier))
-        .subscribe((accounts) => {
-          this.accounts = accounts;
-          this.accounts.unshift(modal);
-          this.accountSlice = this.accounts.slice(0, 4);
-        });
-    }
+    this.getAccounts();
   }
   onPageChange(event: PageEvent) {
     const startIndex = event.pageIndex * event.pageSize;
@@ -63,12 +41,12 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
   onClickModal() {
     this.matRef
-      .open(ModalComponent)
+      .open(AddAccountModalComponent)
       .afterClosed()
       .pipe(takeUntil(this.notifier))
-      .subscribe((val) => {
-        if (val == 'Account created with succes ! ') {
-          this.ngOnInit();
+      .subscribe(val => {
+        if (val) {
+          this.getAccounts();
         }
       });
   }
@@ -80,6 +58,18 @@ export class AccountComponent implements OnInit, OnDestroy {
       .open(DeleteModalComponent, { data: id })
       .afterClosed()
       .pipe(takeUntil(this.notifier))
-      .subscribe((response) => this.ngOnInit());
+      .subscribe(response => this.getAccounts());
+  }
+  getAccounts() {
+    if (this.id != null) {
+      this.accountService
+        .getAccounts(this.id)
+        .pipe(takeUntil(this.notifier))
+        .subscribe(accounts => {
+          this.accounts = accounts;
+          this.accounts.unshift(modal);
+          this.accountSlice = this.accounts.slice(0, 4);
+        });
+    }
   }
 }

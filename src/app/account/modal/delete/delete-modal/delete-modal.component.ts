@@ -8,7 +8,7 @@ import { AccountService } from 'src/app/account/service/account.service';
   templateUrl: './delete-modal.component.html',
   styleUrls: ['./delete-modal.component.scss'],
 })
-export class DeleteModalComponent implements OnInit, OnDestroy {
+export class DeleteModalComponent implements OnDestroy {
   notifier = new Subject();
   accId!: string;
   constructor(
@@ -18,9 +18,7 @@ export class DeleteModalComponent implements OnInit, OnDestroy {
   ) {
     this.accId = data;
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+
   ngOnDestroy(): void {
     this.notifier.complete();
   }
@@ -32,6 +30,6 @@ export class DeleteModalComponent implements OnInit, OnDestroy {
       .subscribe(response => this.ref.close(response));
   }
   disagree() {
-    this.ref.close();
+    this.ref.close(true);
   }
 }
