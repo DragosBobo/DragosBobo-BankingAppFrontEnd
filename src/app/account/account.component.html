@@ -14,7 +14,7 @@
           <h6>{{ account.accountType }}</h6>
           <div>
             <mat-icon>sim_card</mat-icon>
-            <span> <h2 class="viewDetails" routerLink="/transaction/{{ account.accountId }}">View Details</h2></span>
+            <span> <h2 class="view-details" routerLink="/transaction/{{ account.accountId }}">View Details</h2></span>
             <h6>{{ account.currency }}</h6>
           </div>
           <h5>{{ account.iban }}</h5>
@@ -24,7 +24,7 @@
       <ng-template #Modal>
         <mat-card (click)="onClickModal()" [ngClass]="{ modal: account.accountType === 'modal' }">
           <div>
-            <mat-icon id="addIcon">add_circle_outline</mat-icon>
+            <mat-icon id="add-icon">add_circle_outline</mat-icon>
           </div>
         </mat-card>
       </ng-template>
