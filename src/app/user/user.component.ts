@@ -8,4 +8,7 @@ import { UserService } from './service/user.service';
 })
 export class UserComponent implements OnInit {
   constructor(public userService: UserService) {}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 }
