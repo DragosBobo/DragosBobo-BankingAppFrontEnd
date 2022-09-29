@@ -20,7 +20,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   accounts: AccountModel[] = [];
   accountTransactions: TransactionModel[] = [];
   name: string = this.userService.currentUser.username;
-  id = localStorage.getItem('id');
+  id = this.userService.getUserId();
   notifier = new Subject();
   accountSlice: AccountModel[] = [];
   constructor(private userService: UserService, private matRef: MatDialog, private accountService: AccountService) {}

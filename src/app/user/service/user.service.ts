@@ -17,8 +17,13 @@ export class UserService {
     username: '',
   };
   private readonly userApiUrl = `${environment.apiBase}/Auth`;
-
-  constructor(private http: HttpClient) {}
+  userId!: string;
+  constructor(private http: HttpClient) {
+    const id = localStorage.getItem('id');
+    if (id) {
+      this.userId = id;
+    }
+  }
 
   // register a user
   registerUser(user: any): Observable<any> {
@@ -30,7 +35,6 @@ export class UserService {
     return this.http.post<string>(`${this.userApiUrl}/login`, user, { responseType: 'text' as 'json' }).pipe(
       map((response: any) => {
         const decodedToken = this.helper.decodeToken(response);
-        //console.log(decodedToken);
         this.currentUser.email = decodedToken.email;
         this.currentUser.userId = decodedToken.nameid;
         this.currentUser.username = decodedToken.given_name;
@@ -39,5 +43,8 @@ export class UserService {
         return this.currentUser;
       })
     );
+  }
+  getUserId(): string {
+    return this.userId;
   }
 }
