@@ -50,9 +50,7 @@ export class AccountComponent implements OnInit, OnDestroy {
         }
       });
   }
-  logout() {
-    localStorage.clear();
-  }
+
   deleteAccount(id: string) {
     this.matRef
       .open(DeleteModalComponent, { data: id })

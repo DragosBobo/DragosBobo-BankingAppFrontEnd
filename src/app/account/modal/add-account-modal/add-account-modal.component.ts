@@ -10,7 +10,7 @@ import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
   templateUrl: './add-account-modal.component.html',
   styleUrls: ['./add-account-modal.component.scss'],
 })
-export class AddAccountModalComponent implements OnInit, OnDestroy {
+export class AddAccountModalComponent implements OnDestroy {
   accountTypeValues: AccountType[] = [0, 1];
   currencyValues: Currency[] = [0, 1, 2];
   x: Currency = 0;
@@ -20,9 +20,7 @@ export class AddAccountModalComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.notifier.complete();
   }
-  ngOnInit(): void {
-    console.log('hey');
-  }
+
   addAccount(acc: CreateAccountModel) {
     if (this.id) {
       acc.userId = this.id;
