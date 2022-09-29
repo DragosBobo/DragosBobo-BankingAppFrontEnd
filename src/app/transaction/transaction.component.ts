@@ -23,7 +23,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
   notifier = new Subject();
   transactionSlice: TransactionModel[] = [];
   dataSource = new MatTableDataSource(this.transactionSlice);
-  displayedColumns = ['num', 'categoryName', 'totalAmount'];
+  displayedColumns = ['num', 'categoryName', 'totalAmount', 'transactionDate'];
   constructor(
     private transactionService: TransactionService,
     private activatedRoute: ActivatedRoute,
@@ -43,6 +43,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
           this.transactions = response;
           this.transactionSlice = this.transactions.slice(0, 20);
           this.dataSource = new MatTableDataSource(this.transactionSlice);
+          console.log(response);
         });
   }
   onPageChange(event: PageEvent) {
@@ -52,6 +53,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
       endIndex = this.transactions.length;
     }
     this.transactionSlice = this.transactions.slice(startIndex, endIndex);
+    this.dataSource = new MatTableDataSource(this.transactionSlice);
   }
   generateRaport(id: string) {
     console.log(`generate raport for account wiht id : ${id}`);
