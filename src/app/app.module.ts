@@ -25,9 +25,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete-modal.component';
 import { AddAccountModalComponent } from './account/modal/add-account-modal/add-account-modal.component';
 import { LoginButtonComponent } from './user/login/login-button/login-button.component';
+import { MatRippleModule } from '@angular/material/core';
+
+import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +59,7 @@ import { LoginButtonComponent } from './user/login/login-button/login-button.com
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
+    MatRippleModule,
   ],
   providers: [
     AccountService,
