@@ -1,17 +1,18 @@
 <form #form="ngForm">
   <mat-form-field>
     <mat-label>Account Type</mat-label>
-    <mat-select #fontSize [value]="accountTypeValues[0]" name="type" ngModel>
-      <mat-option [value]="accountTypeValues[0]">Debit</mat-option>
-      <mat-option [value]="accountTypeValues[1]">Credit</mat-option>
+    <mat-select #fontSize name="type" ngModel>
+      <ng-container *ngFor="let type of accountTypeValues">
+        <mat-option [value]="type">{{ typeName[type] }}</mat-option>
+      </ng-container>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Currency</mat-label>
-    <mat-select #fontSize [value]="currencyValues[0]" name="currency" ngModel>
-      <mat-option [value]="currencyValues[1]">Euro</mat-option>
-      <mat-option [value]="currencyValues[0]">Ron</mat-option>
-      <mat-option [value]="currencyValues[2]">Dollar</mat-option>
+    <mat-select #fontSize name="currency" ngModel>
+      <ng-container *ngFor="let currency of currencyCategories">
+        <mat-option [value]="currency">{{ currencyName[currency] }}</mat-option>
+      </ng-container>
     </mat-select>
   </mat-form-field>
   <mat-form-field class="iban">

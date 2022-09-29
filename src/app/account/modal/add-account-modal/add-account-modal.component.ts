@@ -5,6 +5,7 @@ import { AccountType, CreateAccountModel, Currency } from '../../account.model';
 import { AccountService } from '../../service/account.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
+import { Type } from '@angular/compiler';
 @Component({
   selector: 'app-add-account-modal',
   templateUrl: './add-account-modal.component.html',
@@ -12,13 +13,16 @@ import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
 })
 export class AddAccountModalComponent implements OnDestroy {
   accountTypeValues: AccountType[] = [0, 1];
-  currencyValues: Currency[] = [0, 1, 2];
-  x: Currency = 0;
+  currencyCategories: Currency[] = [0, 1, 2];
+  public currencyName = Object.keys(Currency).filter(v => isNaN(Number(v))) as (keyof typeof Currency)[];
+  public typeName = Object.keys(AccountType).filter(v => isNaN(Number(v))) as (keyof typeof AccountType)[];
   notifier = new Subject();
+
   id = localStorage.getItem('id');
   constructor(private accountService: AccountService, private ref: MatDialogRef<AddAccountModalComponent>) {}
   ngOnDestroy(): void {
     this.notifier.complete();
+    console.log(this.currencyName);
   }
 
   addAccount(acc: CreateAccountModel) {
