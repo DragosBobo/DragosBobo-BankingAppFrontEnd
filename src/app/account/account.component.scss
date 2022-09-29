@@ -55,18 +55,10 @@
       padding: 25px;
       cursor: pointer;
       .delete {
-        position: relative;
-        bottom: 130px;
-        background-color: rgb(255, 85, 73);
-        height: 90px;
-        left: 180px;
-        display: flex;
-        width: 60px;
-        border-radius: 25px;
-        display: none;
-        mat-icon {
-          margin: auto;
-        }
+        position: absolute;
+        top: 0;
+        transition: all 2s ease;
+        opacity: 0;
       }
       h6 {
         color: whitesmoke;
@@ -97,17 +89,13 @@
       backdrop-filter: blur(1px);
     }
     mat-card:hover .delete {
-      position: relative;
-      bottom: 210px;
-      background-color: rgb(255, 85, 73);
-      height: 90px;
-      left: 180px;
-      display: flex;
-      width: 60px;
-      border-radius: 25px;
-      mat-icon {
-        margin: auto;
-      }
+      position: absolute;
+      top: -80px;
+      transition: all 2s ease;
+      display: block;
+      height: 80px;
+      width: 80px;
+      opacity: 100;
     }
     .view-details {
       display: none;

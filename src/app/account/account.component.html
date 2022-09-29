@@ -16,7 +16,14 @@
             <h6>{{ account.currency }}</h6>
           </div>
           <h5>{{ account.iban }}</h5>
-          <div class="delete" (click)="deleteAccount(account.accountId)"><mat-icon>delete</mat-icon></div>
+          <button
+            class="delete"
+            mat-fab
+            color="warn"
+            (click)="deleteAccount(account.accountId)"
+            aria-label="Example icon button with a delete icon">
+            <mat-icon>delete</mat-icon>
+          </button>
         </mat-card>
       </ng-container>
       <ng-template #Modal>
