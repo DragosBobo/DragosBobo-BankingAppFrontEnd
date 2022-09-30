@@ -1,27 +1,29 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { TransactionService } from './service/transaction.service';
-import { TransactionId , CreateTransaction, RaportTransaction } from './transaction.mock';
+import { TransactionId, CreateTransaction, RaportTransaction } from './transaction.mock';
 import { TransactionModel } from './transaction.model';
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
-  styleUrls: ['./transaction.component.scss']
+  styleUrls: ['./transaction.component.scss'],
 })
-export class TransactionComponent implements OnInit {
-  transactions : TransactionModel[] = [];
-  @Input() id:string="";
-  constructor(public transactionService : TransactionService ) {
-
-   }
- 
-  ngOnInit(): void {
-   
-    //this.transactionService.fetchTransactions().subscribe(response=>{this.transactions=response;});
-    //this.transactionService.createTransaction(CreateTransaction).subscribe(response=>console.log(response));
-    //this.transactionService.fetchReportTransaction(RaportTransaction).subscribe(response=>this.transactions=response);
-    this.transactionService.fetchTransactionsByAccountId(this.id).subscribe(response=>this.transactions=response);
-    
-   
+export class TransactionComponent implements OnInit, OnDestroy {
+  transactions: TransactionModel[] = [];
+  id: any;
+  notifier = new Subject();
+  constructor(private transactionService: TransactionService, private activatedRoute: ActivatedRoute) {}
+  ngOnDestroy(): void {
+    this.notifier.complete();
   }
-  
+
+  ngOnInit(): void {
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (this.id)
+      this.transactionService
+        .fetchTransactionsByAccountId(this.id)
+        .pipe(takeUntil(this.notifier))
+        .subscribe((response: TransactionModel[]) => (this.transactions = response));
+  }
 }

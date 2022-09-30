@@ -1,23 +1,45 @@
-<div class="mainCard">
-  <div class="mainCard__title">
-    List with every accounts for this particular user :
+<div class="main">
+  <div class="navbar">
+    <button mat-raised-button color="primary" routerLink="/user">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <app-login-button></app-login-button>
   </div>
-  <mat-card id="mainCard_matCard">
-    <li *ngFor="let account of accounts">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ account.iban }}
-          </mat-panel-title>
-          <mat-panel-description>
-            Type of account : {{ account.accountType }}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
+  <div class="accounts">
+    <ng-container *ngFor="let account of accountSlice">
+      <ng-container *ngIf="account.accountType !== 'modal'; else Modal">
+        <mat-card [ngClass]="{ credit: account.accountType === 'Credit' }">
+          <h6>{{ account.accountType }}</h6>
+          <div>
+            <mat-icon>sim_card</mat-icon>
+            <span> <h2 class="view-details" routerLink="/transaction/{{ account.accountId }}">View Details</h2></span>
+            <h6>{{ account.currency }}</h6>
+          </div>
+          <h5>{{ account.iban }}</h5>
+          <button
+            class="delete"
+            mat-fab
+            color="warn"
+            (click)="deleteAccount(account.accountId)"
+            aria-label="Example icon button with a delete icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card>
+      </ng-container>
+      <ng-template #Modal>
+        <mat-card matRipple (click)="onClickModal()" [ngClass]="{ modal: account.accountType === 'modal' }">
+          <div>
+            <mat-icon id="add-icon">add_circle_outline</mat-icon>
+          </div>
+        </mat-card>
+      </ng-template>
+    </ng-container>
+  </div>
 
-        <ng-template matExpansionPanelContent>
-          <app-transaction id="{{ account.accountId }}"></app-transaction>
-        </ng-template>
-      </mat-expansion-panel>
-    </li>
-  </mat-card>
+  <mat-paginator
+    [length]="this.accounts.length"
+    [pageSize]="4"
+    [pageSizeOptions]="[4, 8]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
 </div>

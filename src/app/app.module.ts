@@ -16,17 +16,30 @@ import { TransactionService } from './transaction/service/transaction.service';
 import { UserComponent } from './user/user.component';
 import { UserService } from './user/service/user.service';
 import { LoginComponent } from './user/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { TokenInterceptor } from './user/service/token.interceptor';
 import { AuthenticationGuard } from './app-guard.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { AddAccountModalComponent } from './account/modal/add-account-modal/add-account-modal.component';
+import { LoginButtonComponent } from './user/login/login-button/login-button.component';
+import { MatRippleModule } from '@angular/material/core';
 
+import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
     AccountComponent,
     TransactionComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    DeleteModalComponent,
+    AddAccountModalComponent,
+    LoginButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,9 +52,22 @@ import { AuthenticationGuard } from './app-guard.service';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatIconModule,
+    MatTableModule,
+    MatGridListModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatRippleModule,
   ],
-  providers: [AccountService, TransactionService, UserService, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthenticationGuard],
-  bootstrap: [AppComponent]
+  providers: [
+    AccountService,
+    TransactionService,
+    UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    AuthenticationGuard,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

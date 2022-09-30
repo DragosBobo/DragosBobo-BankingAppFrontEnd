@@ -1,0 +1,117 @@
+.main {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .navbar {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+  }
+
+  .accounts {
+    display: flex;
+    grid-template-columns: repeat(4, 200px);
+    grid-template-rows: repeat(2, 200px);
+    width: 85%;
+    height: 90%;
+    margin: auto;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    backdrop-filter: blur(1px);
+    .modal {
+      background-color: #23a82c;
+      width: 150px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      mat-icon {
+        visibility: visible;
+        margin: auto;
+        scale: 2.5;
+        transition: all 2s ease;
+      }
+    }
+    :hover #add-icon {
+      scale: 3.5;
+    }
+
+    .credit {
+      background-color: #23a6a8;
+    }
+
+    mat-card {
+      z-index: 0;
+      flex: 0 1 calc(20%);
+      margin: auto;
+      max-height: 110px;
+      background-color: #235ba8;
+      color: rgba(255, 255, 255, 0.8);
+      padding: 25px;
+      cursor: pointer;
+      .delete {
+        position: absolute;
+        top: 0;
+        transition: all 2s ease;
+        opacity: 0;
+      }
+      h6 {
+        color: whitesmoke;
+      }
+
+      div {
+        display: flex;
+        justify-content: space-between;
+        height: 25px;
+
+        mat-icon {
+          color: antiquewhite;
+        }
+      }
+    }
+
+    :hover .view-details {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: -20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      backdrop-filter: blur(1px);
+    }
+    mat-card:hover .delete {
+      position: absolute;
+      top: -80px;
+      transition: all 2s ease;
+      display: block;
+      height: 80px;
+      width: 80px;
+      opacity: 100;
+    }
+    .view-details {
+      display: none;
+    }
+  }
+  h5 {
+    text-align: center;
+    font-weight: 800;
+  }
+}
+@media (max-width: 850px) {
+  .main {
+    .accounts {
+      .modal {
+        height: 118px;
+      }
+    }
+  }
+}
