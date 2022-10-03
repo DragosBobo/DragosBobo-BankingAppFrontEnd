@@ -18,7 +18,6 @@ export class AddAccountModalComponent implements OnDestroy {
   public currencyName = Object.keys(Currency).filter(v => isNaN(Number(v))) as (keyof typeof Currency)[];
   public typeName = Object.keys(AccountType).filter(v => isNaN(Number(v))) as (keyof typeof AccountType)[];
   notifier = new Subject();
-  IbanFormControl = new FormControl('', [Validators.required]);
   id = this.userService.getUserId();
   constructor(
     private accountService: AccountService,

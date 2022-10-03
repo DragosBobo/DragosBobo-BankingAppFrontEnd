@@ -1,7 +1,7 @@
 <form #form="ngForm">
   <mat-form-field>
     <mat-label>Account Type</mat-label>
-    <mat-select #fontSize name="type" ngModel>
+    <mat-select #fontSize name="accountType" ngModel>
       <ng-container *ngFor="let type of accountTypeValues">
         <mat-option [value]="type">{{ typeName[type] }}</mat-option>
       </ng-container>
