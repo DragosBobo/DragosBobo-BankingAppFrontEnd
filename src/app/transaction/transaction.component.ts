@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,13 +6,8 @@ import { MatSort } from '@angular/material/sort';
 
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { RaportComponent } from './modal/raport/raport.component';
 import { TransactionService } from './service/transaction.service';
-import {
-  TransactionId,
-  CreateTransaction,
-  RaportTransaction,
-} from './transaction.mock';
+import { TransactionId, CreateTransaction, RaportTransaction } from './transaction.mock';
 import { TransactionModel } from './transaction.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RaportTransactionModel } from './transaction.model';
@@ -62,7 +50,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
       this.transactionService
         .fetchTransactions()
         .pipe(takeUntil(this.notifier))
-        .subscribe((response) => {
+        .subscribe(response => {
           this.transactions = response;
           this.transactionSlice = this.transactions.slice(0, 20);
           this.dataSource = new MatTableDataSource(this.transactionSlice);
@@ -83,20 +71,12 @@ export class TransactionComponent implements OnInit, OnDestroy {
     this.report.id = id;
     this.startDate = new Date(this.startDate).toISOString();
     this.endDate = new Date(this.endDate).toISOString();
-    let startTransformed = this.datePipe.transform(
-      this.startDate,
-      'yyyy-MM-dd hh:mm:ss'
-    );
-    let endTransformed = this.datePipe.transform(
-      this.endDate,
-      'yyyy-MM-dd hh:mm:ss'
-    );
+    let startTransformed = this.datePipe.transform(this.startDate, 'yyyy-MM-dd hh:mm:ss');
+    let endTransformed = this.datePipe.transform(this.endDate, 'yyyy-MM-dd hh:mm:ss');
     if (startTransformed && endTransformed) {
       this.report.lastDate = endTransformed;
       this.report.startDate = startTransformed;
     }
-    this.transactionService
-      .fetchReportTransaction(this.report)
-      .subscribe((response) => console.log(response));
+    this.transactionService.fetchReportTransaction(this.report).subscribe(response => console.log(response));
   }
 }

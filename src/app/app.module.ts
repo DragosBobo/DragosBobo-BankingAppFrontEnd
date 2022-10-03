@@ -28,9 +28,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { AddAccountModalComponent } from './account/modal/add-account-modal/add-account-modal.component';
 import { LoginButtonComponent } from './user/login/login-button/login-button.component';
 import { MatRippleModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete-modal.component';
-import { RaportComponent } from './transaction/modal/raport/raport.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
@@ -68,7 +68,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatNativeDateModule,
     MatSortModule,
     MatRippleModule,
-
+    MatFormFieldModule,
   ],
   providers: [
     AccountService,
