@@ -16,7 +16,7 @@ import { TransactionService } from './transaction/service/transaction.service';
 import { UserComponent } from './user/user.component';
 import { UserService } from './user/service/user.service';
 import { LoginComponent } from './user/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { TokenInterceptor } from './user/service/token.interceptor';
 import { AuthenticationGuard } from './app-guard.service';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,8 +24,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ModalComponent } from './account/modal/modal/modal.component';
 import { MatSelectModule } from '@angular/material/select';
+import { AddAccountModalComponent } from './account/modal/add-account-modal/add-account-modal.component';
+import { LoginButtonComponent } from './user/login/login-button/login-button.component';
+import { MatRippleModule } from '@angular/material/core';
+
 import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete-modal.component';
 import { RaportComponent } from './transaction/modal/raport/raport.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -39,9 +42,9 @@ import { MatSortModule } from '@angular/material/sort';
     TransactionComponent,
     UserComponent,
     LoginComponent,
-    ModalComponent,
     DeleteModalComponent,
-    RaportComponent,
+    AddAccountModalComponent,
+    LoginButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSortModule,
+    MatRippleModule,
+
   ],
   providers: [
     AccountService,

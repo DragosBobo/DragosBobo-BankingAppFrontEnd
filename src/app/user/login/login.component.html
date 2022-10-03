@@ -1,16 +1,16 @@
 <div class="main">
-<mat-card class="form-card">
-    <form class="form" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
-        <mat-form-field appearance="fill">
-            <mat-label>Email</mat-label>
-            <input type="email" matInput placeholder="Ex. pat@example.com" name="email" formControlName="email">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input type="password" matInput placeholder="********" name="password" formControlName="password">
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">Login</button>
-        <button mat-raised-button color="accent">Register</button>
+  <mat-card class="form-card">
+    <form class="form" #form="ngForm" novalidate>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="Ex. pat@example.com" name="email" ngModel />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput placeholder="********" name="password" ngModel />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="login(form.value)">Login</button>
+      <button mat-raised-button color="accent">Register</button>
     </form>
-</mat-card>
+  </mat-card>
 </div>
