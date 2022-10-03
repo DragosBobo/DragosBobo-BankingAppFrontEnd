@@ -8,6 +8,18 @@
     >
       Back
     </button>
+  </div>
+  <div class="picker-container">
+    <mat-form-field>
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="Start date" [(ngModel)]="startDate" />
+        <input matEndDate placeholder="End date" [(ngModel)]="endDate" />
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
     <button
       mat-raised-button
       id="raport-button"
@@ -19,10 +31,7 @@
     </button>
   </div>
   <mat-card>
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filter" />
-    </mat-form-field>
-    <mat-table #table [dataSource]="dataSource">
+    <mat-table #table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="num">
         <mat-header-cell *matHeaderCellDef> num </mat-header-cell>
         <mat-cell *matCellDef="let transaction">
@@ -30,7 +39,9 @@
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="totalAmount">
-        <mat-header-cell *matHeaderCellDef> Total Amount </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Total Amount
+        </mat-header-cell>
         <mat-cell *matCellDef="let transaction">
           {{ transaction.totalAmount }}
         </mat-cell>

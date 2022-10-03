@@ -22,14 +22,16 @@ import { AuthenticationGuard } from './app-guard.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './account/modal/modal/modal.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete-modal.component';
 import { RaportComponent } from './transaction/modal/raport/raport.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     LoginComponent,
     ModalComponent,
     DeleteModalComponent,
-    RaportComponent
+    RaportComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,15 +56,22 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReactiveFormsModule,
     AppRoutingModule,
     MatIconModule,
-    MatTableModule, 
+    MatTableModule,
     MatGridListModule,
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSortModule,
   ],
-  providers: [AccountService, TransactionService, UserService, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthenticationGuard],
-  bootstrap: [AppComponent]
+  providers: [
+    AccountService,
+    TransactionService,
+    UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    AuthenticationGuard,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -50,6 +50,7 @@ export class AccountComponent implements OnInit, OnDestroy {
           this.accounts = accounts;
           this.accounts.unshift(modal);
           this.accountSlice = this.accounts.slice(0, 4);
+          console.log(this.id);
         });
     }
   }

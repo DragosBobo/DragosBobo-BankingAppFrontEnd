@@ -1,7 +1,16 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { RaportComponent } from './modal/raport/raport.component';
@@ -12,10 +21,14 @@ import {
   RaportTransaction,
 } from './transaction.mock';
 import { TransactionModel } from './transaction.model';
+import { FormControl, FormGroup } from '@angular/forms';
+import { RaportTransactionModel } from './transaction.model';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
   styleUrls: ['./transaction.component.scss'],
+  providers: [DatePipe],
 })
 export class TransactionComponent implements OnInit, OnDestroy {
   transactions: TransactionModel[] = [];
@@ -24,11 +37,21 @@ export class TransactionComponent implements OnInit, OnDestroy {
   transactionSlice: TransactionModel[] = [];
   dataSource = new MatTableDataSource(this.transactionSlice);
   displayedColumns = ['num', 'categoryName', 'totalAmount', 'transactionDate'];
+  startDate!: any;
+  endDate!: any;
+  report: RaportTransactionModel = {
+    id: '',
+    startDate: '',
+    lastDate: '',
+  };
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(
+    private datePipe: DatePipe,
     private transactionService: TransactionService,
     private activatedRoute: ActivatedRoute,
     private matRef: MatDialog
   ) {}
+
   ngOnDestroy(): void {
     this.notifier.complete();
   }
@@ -43,7 +66,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
           this.transactions = response;
           this.transactionSlice = this.transactions.slice(0, 20);
           this.dataSource = new MatTableDataSource(this.transactionSlice);
-          console.log(response);
+          this.dataSource.sort = this.sort;
         });
   }
   onPageChange(event: PageEvent) {
@@ -54,20 +77,26 @@ export class TransactionComponent implements OnInit, OnDestroy {
     }
     this.transactionSlice = this.transactions.slice(startIndex, endIndex);
     this.dataSource = new MatTableDataSource(this.transactionSlice);
+    this.dataSource.sort = this.sort;
   }
   generateRaport(id: string) {
-    console.log(`generate raport for account wiht id : ${id}`);
-    this.matRef
-      .open(RaportComponent)
-      .afterClosed()
-      .pipe(takeUntil(this.notifier))
-      .subscribe((result) => console.log('modal works'));
-  }
-  applyFilter(event: Event) {
-    this.dataSource = new MatTableDataSource(this.transactionSlice);
-    let filterValue = (event.target as HTMLInputElement).value;
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+    this.report.id = id;
+    this.startDate = new Date(this.startDate).toISOString();
+    this.endDate = new Date(this.endDate).toISOString();
+    let startTransformed = this.datePipe.transform(
+      this.startDate,
+      'yyyy-MM-dd hh:mm:ss'
+    );
+    let endTransformed = this.datePipe.transform(
+      this.endDate,
+      'yyyy-MM-dd hh:mm:ss'
+    );
+    if (startTransformed && endTransformed) {
+      this.report.lastDate = endTransformed;
+      this.report.startDate = startTransformed;
+    }
+    this.transactionService
+      .fetchReportTransaction(this.report)
+      .subscribe((response) => console.log(response));
   }
 }
