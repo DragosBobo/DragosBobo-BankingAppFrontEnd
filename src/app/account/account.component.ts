@@ -19,7 +19,7 @@ import { AddAccountModalComponent } from './modal/add-account-modal/add-account-
 export class AccountComponent implements OnInit, OnDestroy {
   accounts: AccountModel[] = [];
   accountTransactions: TransactionModel[] = [];
-  name: string = this.userService.currentUser.username;
+  name!: string;
   id = this.userService.getUserId();
   notifier = new Subject();
   accountSlice: AccountModel[] = [];
@@ -30,6 +30,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getAccounts();
+    this.name = this.userService.getUserName();
   }
   onPageChange(event: PageEvent) {
     const startIndex = event.pageIndex * event.pageSize;
@@ -47,6 +48,7 @@ export class AccountComponent implements OnInit, OnDestroy {
       .subscribe(val => {
         if (val) {
           this.getAccounts();
+          console.log(val);
         }
       });
   }

@@ -11,6 +11,7 @@ import { IUserLoginModel, IUserModel } from '../user.model';
 })
 export class LoginComponent implements OnDestroy {
   token!: string;
+  currentUser!: IUserModel;
   notifier = new Subject();
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {}
   ngOnDestroy(): void {
@@ -21,8 +22,9 @@ export class LoginComponent implements OnDestroy {
     this.userService
       .loginUser(form)
       .pipe(takeUntil(this.notifier))
-      .subscribe(res => {
-        console.log(res);
+      .subscribe(response => {
+        this.currentUser = response;
+        console.log(this.currentUser);
         this.router.navigate(['/account']).then(() => window.location.reload());
       });
   }

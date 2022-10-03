@@ -4,7 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { AccountType, CreateAccountModel, Currency } from '../../account.model';
 import { AccountService } from '../../service/account.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Type } from '@angular/compiler';
 import { UserService } from 'src/app/user/service/user.service';
 @Component({
@@ -18,7 +18,7 @@ export class AddAccountModalComponent implements OnDestroy {
   public currencyName = Object.keys(Currency).filter(v => isNaN(Number(v))) as (keyof typeof Currency)[];
   public typeName = Object.keys(AccountType).filter(v => isNaN(Number(v))) as (keyof typeof AccountType)[];
   notifier = new Subject();
-
+  IbanFormControl = new FormControl('', [Validators.required]);
   id = this.userService.getUserId();
   constructor(
     private accountService: AccountService,
@@ -27,7 +27,6 @@ export class AddAccountModalComponent implements OnDestroy {
   ) {}
   ngOnDestroy(): void {
     this.notifier.complete();
-    console.log(this.currencyName);
   }
 
   addAccount(acc: CreateAccountModel) {
