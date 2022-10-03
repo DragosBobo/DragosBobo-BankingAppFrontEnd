@@ -11,12 +11,18 @@
     display: flex;
     justify-content: space-between;
     padding-right: 10px;
+    background-color: #673ab7;
+    height: 90px;
+    button:hover {
+      background-color: #673ab7;
+    }
     .container {
       display: flex;
       flex-direction: column;
-      height: 100px;
+      height: 80px;
       align-items: center;
       justify-content: center;
+      color: whitesmoke;
     }
     button {
       height: 36px;
