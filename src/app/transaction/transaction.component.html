@@ -1,34 +1,37 @@
 <div class="main">
   <div class="header">
-    <button
-      mat-raised-button
-      id="back-button"
-      color="primary"
-      routerLink="/account"
-    >
-      Back
-    </button>
+    <button mat-raised-button id="back-button" color="primary" routerLink="/account">Back</button>
   </div>
-  <div class="picker-container">
-    <mat-form-field>
-      <mat-label>Enter a date range</mat-label>
-      <mat-date-range-input [rangePicker]="picker">
-        <input matStartDate placeholder="Start date" [(ngModel)]="startDate" />
-        <input matEndDate placeholder="End date" [(ngModel)]="endDate" />
-      </mat-date-range-input>
-      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field>
-    <button
-      mat-raised-button
-      id="raport-button"
-      color="warn"
-      (click)="generateRaport(id)"
-      [value]=""
-    >
-      Generate Report
-    </button>
+
+  <div class="tools-container">
+    <div class="search-container">
+      <mat-form-field class="example-full-width">
+        <span matPrefix> </span>
+        <input
+          type="text"
+          matInput
+          (keyup)="searchHandler($event)"
+          placeholder="Search for a category"
+          [(ngModel)]="search"
+          name="search" />
+        <button matSuffix mat-button><mat-icon>search</mat-icon></button>
+      </mat-form-field>
+    </div>
+    <div class="report-container">
+      <mat-form-field>
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Start date" [(ngModel)]="startDate" />
+          <input matEndDate placeholder="End date" [(ngModel)]="endDate" />
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      <button mat-raised-button id="raport-button" color="warn" (click)="generateRaport(id)" [value]="">
+        Generate Report
+      </button>
+    </div>
   </div>
   <mat-card>
     <mat-table #table [dataSource]="dataSource" matSort>
@@ -39,9 +42,7 @@
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="totalAmount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          Total Amount
-        </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Total Amount </mat-header-cell>
         <mat-cell *matCellDef="let transaction">
           {{ transaction.totalAmount }}
         </mat-cell>
@@ -55,7 +56,7 @@
       <ng-container matColumnDef="transactionDate">
         <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
         <mat-cell *matCellDef="let transaction">
-          {{ transaction.TransactionDate | date: "medium" }}
+          {{ transaction.TransactionDate | date: 'medium' }}
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -66,8 +67,7 @@
       [pageSize]="20"
       [pageSizeOptions]="[5, 10, 20, 40, 100]"
       (page)="onPageChange($event)"
-      [showFirstLastButtons]="true"
-    >
+      [showFirstLastButtons]="true">
     </mat-paginator>
   </mat-card>
 </div>

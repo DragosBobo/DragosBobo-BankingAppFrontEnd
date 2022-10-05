@@ -19,6 +19,7 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe],
 })
 export class TransactionComponent implements OnInit, OnDestroy {
+  search!: string;
   transactions: TransactionModel[] = [];
   id: any;
   notifier = new Subject();
@@ -33,6 +34,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
     lastDate: '',
   };
   @ViewChild(MatSort) sort!: MatSort;
+
   constructor(
     private datePipe: DatePipe,
     private transactionService: TransactionService,
@@ -78,5 +80,9 @@ export class TransactionComponent implements OnInit, OnDestroy {
       this.report.startDate = startTransformed;
     }
     this.transactionService.fetchReportTransaction(this.report).subscribe(response => console.log(response));
+  }
+  searchHandler(event: Event) {
+    const filter = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filter.trim().toLowerCase();
   }
 }
