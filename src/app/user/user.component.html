@@ -1,1 +1,18 @@
-user component works!
+<div class="main-container">
+  <div class="header">
+    <button mat-fab color="primary" routerLink="/account" aria-label="Example icon button with a home icon"></button>
+    <mat-card class="username-container">Hello Username-Test</mat-card>
+    <app-login-button></app-login-button>
+  </div>
+  <mat-card class="content">
+    <mat-table #table>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.position }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </mat-card>
+</div>
