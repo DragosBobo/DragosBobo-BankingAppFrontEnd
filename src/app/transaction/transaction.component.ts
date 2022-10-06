@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
@@ -19,6 +19,7 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe],
 })
 export class TransactionComponent implements OnInit, OnDestroy {
+  @ViewChild('paginator') paginator!: MatPaginator;
   search!: string;
   transactions: TransactionModel[] = [];
   id: any;
@@ -66,8 +67,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
       endIndex = this.transactions.length;
     }
     this.transactionSlice = this.transactions.slice(startIndex, endIndex);
-    this.dataSource = new MatTableDataSource(this.transactionSlice);
-    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
   generateRaport(id: string) {
     this.report.id = id;
