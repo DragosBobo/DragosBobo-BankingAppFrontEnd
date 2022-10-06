@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
 import { ActivatedRoute } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { filter, Subject, takeUntil } from 'rxjs';
 import { TransactionService } from './service/transaction.service';
 import { TransactionId, CreateTransaction, RaportTransaction } from './transaction.mock';
 import { TransactionModel } from './transaction.model';
@@ -83,6 +83,26 @@ export class TransactionComponent implements OnInit, OnDestroy {
   }
   searchHandler(event: Event) {
     const filter = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filter.trim().toLowerCase();
+    this.dataSource.filterPredicate = (data, filter: string) => {
+      if (data.categoryName.includes(filter)) {
+        return true;
+      } else return false;
+    };
+    this.dataSource.filter = filter;
+  }
+  datePickerHandler() {
+    this.startDate = new Date(this.startDate).toISOString();
+    this.endDate = new Date(this.endDate).toISOString();
+
+    this.dataSource.filterPredicate = (data, filter: string) => {
+      if (
+        new Date(data.TransactionDate).getTime() >= new Date(this.startDate).getTime() &&
+        new Date(data.TransactionDate).getTime() <= new Date(this.endDate).getTime()
+      ) {
+        console.log(data.TransactionDate);
+        return true;
+      } else return false;
+    };
+    if (this.endDate) this.dataSource.filter = this.endDate;
   }
 }

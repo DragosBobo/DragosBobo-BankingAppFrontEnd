@@ -34,6 +34,7 @@ import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatSortModule,
     MatRippleModule,
     MatFormFieldModule,
+    MatTableExporterModule,
   ],
   providers: [
     AccountService,

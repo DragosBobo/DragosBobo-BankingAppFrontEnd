@@ -22,7 +22,7 @@
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [rangePicker]="picker">
           <input matStartDate placeholder="Start date" [(ngModel)]="startDate" />
-          <input matEndDate placeholder="End date" [(ngModel)]="endDate" />
+          <input matEndDate placeholder="End date" [(ngModel)]="endDate" (dateChange)="datePickerHandler()" />
         </mat-date-range-input>
         <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -31,10 +31,13 @@
       <button mat-raised-button id="raport-button" color="warn" (click)="generateRaport(id)" [value]="">
         Generate Report
       </button>
+      <button mat-raised-button id="export-button" color="primary" (click)="exporter.exportTable('csv')" [value]="">
+        Export Table
+      </button>
     </div>
   </div>
   <mat-card>
-    <mat-table #table [dataSource]="dataSource" matSort>
+    <mat-table #table [dataSource]="dataSource" matSort matTableExporter #exporter="matTableExporter">
       <ng-container matColumnDef="num">
         <mat-header-cell *matHeaderCellDef> num </mat-header-cell>
         <mat-cell *matCellDef="let transaction">

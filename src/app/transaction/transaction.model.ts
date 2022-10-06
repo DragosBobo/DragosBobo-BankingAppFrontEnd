@@ -8,7 +8,7 @@ enum CategoryTransaction {
 interface TransactionModel {
   totalAmount: number;
   categoryName: string;
-  transactionDate: string;
+  TransactionDate: string;
 }
 interface CreateTransactionModel {
   amount: number;
