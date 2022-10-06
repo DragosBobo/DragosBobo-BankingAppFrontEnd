@@ -7,14 +7,10 @@
     <app-login-button></app-login-button>
   </div>
   <mat-card class="content">
-    <mat-table #table>
-      <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-        <mat-cell> hello</mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    </mat-table>
+    <h1>Personal info</h1>
+    <span> Username : username-test </span>
+    <span>Email: username@test.com</span>
+    <span>Number of accounts : 25 </span>
+    <span>Total number of transactions : 200</span>
   </mat-card>
 </div>
