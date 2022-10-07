@@ -79,7 +79,6 @@ export class TransactionComponent implements OnInit, OnDestroy {
       this.report.lastDate = endTransformed;
       this.report.startDate = startTransformed;
     }
-    this.transactionService.fetchReportTransaction(this.report).subscribe(response => console.log(response));
   }
   searchHandler(event: Event) {
     const filter = (event.target as HTMLInputElement).value;
@@ -99,7 +98,6 @@ export class TransactionComponent implements OnInit, OnDestroy {
         new Date(data.TransactionDate).getTime() >= new Date(this.startDate).getTime() &&
         new Date(data.TransactionDate).getTime() <= new Date(this.endDate).getTime()
       ) {
-        console.log(data.TransactionDate);
         return true;
       } else return false;
     };
