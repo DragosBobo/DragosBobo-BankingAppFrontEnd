@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit, Pipe, PipeTransform } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
 import { AccountModel, CreateAccountModel } from './account.model';
 import { AccountService } from './service/account.service';
 import { TransactionService } from '../transaction/service/transaction.service';
