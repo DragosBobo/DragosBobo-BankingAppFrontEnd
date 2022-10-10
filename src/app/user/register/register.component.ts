@@ -18,7 +18,6 @@ export class RegisterComponent implements OnDestroy {
   }
 
   register(user: IUserRegisterModel) {
-    console.log(user);
     this.user
       .registerUser(user)
       .pipe(takeUntil(this.notifier))

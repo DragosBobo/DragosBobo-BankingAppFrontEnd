@@ -27,3 +27,42 @@
     }
   }
 }
+@media (max-width: 1322px) {
+  .main {
+    .form-card {
+      .form {
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        display: flex;
+        justify-content: center;
+        mat-form-field {
+          margin: 5px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 414px) {
+  .main {
+    .form-card {
+      .form {
+        scale: 0.6;
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        display: flex;
+        justify-content: center;
+        mat-form-field {
+          margin: 5px;
+        }
+      }
+    }
+  }
+}
