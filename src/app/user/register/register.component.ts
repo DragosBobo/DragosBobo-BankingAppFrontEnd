@@ -12,20 +12,25 @@ import { IUserRegisterModel } from '../user.model';
 export class RegisterComponent implements OnDestroy {
   notifier = new Subject();
   error = false;
+  confirmedPasswordError = false;
   constructor(private user: UserService, private router: Router) {}
   ngOnDestroy(): void {
     this.notifier.complete();
   }
 
   register(user: IUserRegisterModel) {
-    this.user
-      .registerUser(user)
-      .pipe(takeUntil(this.notifier))
-      .subscribe({
-        complete: () => {
-          this.router.navigate(['/login']);
-        },
-        error: e => (this.error = true),
-      });
+    if (user.confirmedPassword === user.password) {
+      this.user
+        .registerUser(user)
+        .pipe(takeUntil(this.notifier))
+        .subscribe({
+          complete: () => {
+            this.router.navigate(['/login']);
+          },
+          error: e => (this.error = true),
+        });
+    } else {
+      this.confirmedPasswordError = true;
+    }
   }
 }

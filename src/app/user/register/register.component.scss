@@ -18,6 +18,12 @@
         color: red;
         font-weight: bold;
       }
+      .passwordError {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: red;
+      }
       display: flex;
       flex-direction: column;
       justify-content: center;

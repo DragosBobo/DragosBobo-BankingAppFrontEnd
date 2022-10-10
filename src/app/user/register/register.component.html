@@ -4,6 +4,9 @@
       <ng-container *ngIf="error">
         <div class="error"><h1>Invalid inputs</h1></div>
       </ng-container>
+      <ng-container *ngIf="confirmedPasswordError">
+        <div class="passwordError"><h2>passwords doesn't match</h2></div>
+      </ng-container>
       <div class="name-container">
         <mat-form-field appearance="fill">
           <mat-label>First Name</mat-label>
