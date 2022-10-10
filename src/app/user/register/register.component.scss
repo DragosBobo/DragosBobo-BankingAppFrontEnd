@@ -17,6 +17,7 @@
         justify-content: center;
         color: red;
         font-weight: bold;
+        position: relative;
       }
       .passwordError {
         display: flex;
@@ -29,6 +30,9 @@
       justify-content: center;
       mat-form-field {
         margin: 8px;
+      }
+      button {
+        margin: 10px;
       }
     }
   }

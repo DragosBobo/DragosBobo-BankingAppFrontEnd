@@ -27,10 +27,14 @@ export class RegisterComponent implements OnDestroy {
           complete: () => {
             this.router.navigate(['/login']);
           },
-          error: e => (this.error = true),
+          error: e => {
+            this.error = true;
+            this.confirmedPasswordError = false;
+          },
         });
     } else {
       this.confirmedPasswordError = true;
+      this.error = false;
     }
   }
 }
