@@ -35,6 +35,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { RegisterComponent } from './user/register/register.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     DeleteModalComponent,
     AddAccountModalComponent,
     LoginButtonComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
