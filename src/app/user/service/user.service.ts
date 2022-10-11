@@ -27,7 +27,7 @@ export class UserService {
 
   // register a user
   registerUser(user: IUserRegisterModel): Observable<any> {
-    return this.http.post<any>(`${this.userApiUrl}/register`, user, { responseType: 'text' as 'json' });
+    return this.http.post<any>(`${this.userApiUrl}/register`, user);
   }
 
   //login a user
