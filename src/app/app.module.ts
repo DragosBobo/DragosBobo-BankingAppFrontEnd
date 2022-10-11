@@ -35,6 +35,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     MatRippleModule,
     MatFormFieldModule,
     MatTableExporterModule,
+    MatToolbarModule,
   ],
   providers: [
     AccountService,

@@ -3,14 +3,15 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-
-  .navbar {
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  mat-toolbar {
     display: flex;
     justify-content: space-between;
-    padding-right: 10px;
+    height: 100px;
+    .button {
+      margin-left: 150px;
+      margin-right: 150px;
+      margin-top: 30px;
+    }
   }
 
   .accounts {
@@ -57,8 +58,11 @@
       .delete {
         position: absolute;
         top: 0;
-        transition: all 2s ease;
+        transition: all 1s ease;
         opacity: 0;
+        mat-icon {
+          margin: auto;
+        }
       }
       h6 {
         color: whitesmoke;
@@ -90,11 +94,11 @@
     }
     mat-card:hover .delete {
       position: absolute;
-      top: -80px;
-      transition: all 2s ease;
+      top: -50px;
+      transition: all 1s ease;
       display: block;
-      height: 80px;
-      width: 80px;
+      height: 50px;
+      width: 50px;
       opacity: 100;
     }
     .view-details {
@@ -111,6 +115,33 @@
     .accounts {
       .modal {
         height: 118px;
+      }
+      mat-card:hover .delete {
+        position: absolute;
+        top: -0px;
+        transition: all 1s ease;
+        display: block;
+        height: 50px;
+        width: 50px;
+        opacity: 100;
+      }
+    }
+  }
+}
+@media (max-width: 1850px) {
+  .main {
+    .accounts {
+      .modal {
+        height: 118px;
+      }
+      mat-card:hover .delete {
+        position: absolute;
+        top: -10px;
+        transition: all 1s ease;
+        display: block;
+        height: 50px;
+        width: 50px;
+        opacity: 100;
       }
     }
   }

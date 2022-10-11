@@ -18,6 +18,7 @@ export class UserService {
   };
   private readonly userApiUrl = `${environment.apiBase}/Auth`;
   userId!: string;
+  userName!: string;
   constructor(private http: HttpClient) {
     const id = localStorage.getItem('id');
     if (id) {
@@ -40,11 +41,21 @@ export class UserService {
         this.currentUser.username = decodedToken.given_name;
         localStorage.setItem('token', response);
         localStorage.setItem('id', this.currentUser.userId);
+        localStorage.setItem('name', this.currentUser.username);
+
         return this.currentUser;
       })
     );
   }
   getUserId(): string {
     return this.userId;
+  }
+  getUserName(): string {
+    const name = localStorage.getItem('name');
+
+    if (name) {
+      this.userName = name;
+    }
+    return this.userName;
   }
 }

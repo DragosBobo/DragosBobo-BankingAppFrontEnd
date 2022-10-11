@@ -1,7 +1,7 @@
 <div class="main">
-  <div class="header">
+  <mat-toolbar>
     <button mat-raised-button id="back-button" color="primary" routerLink="/account">Back</button>
-  </div>
+  </mat-toolbar>
 
   <div class="tools-container">
     <div class="search-container">
@@ -28,9 +28,7 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
       </mat-form-field>
-      <button mat-raised-button id="raport-button" color="warn" (click)="generateRaport(id)" [value]="">
-        Generate Report
-      </button>
+
       <button mat-raised-button id="export-button" color="primary" (click)="exporter.exportTable('csv')" [value]="">
         Export Table
       </button>

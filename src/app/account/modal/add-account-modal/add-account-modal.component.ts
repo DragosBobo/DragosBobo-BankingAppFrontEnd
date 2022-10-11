@@ -27,7 +27,6 @@ export class AddAccountModalComponent implements OnDestroy {
   ) {}
   ngOnDestroy(): void {
     this.notifier.complete();
-    console.log(this.currencyName);
   }
 
   addAccount(acc: CreateAccountModel) {
