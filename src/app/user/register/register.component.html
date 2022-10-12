@@ -1,6 +1,7 @@
 <div class="main">
   <mat-card class="form-card">
     <form class="form" #form="ngForm" novalidate>
+      <h4>Register Page</h4>
       <div class="name-container">
         <mat-form-field appearance="fill">
           <mat-label>First Name</mat-label>
@@ -33,7 +34,6 @@
         </mat-form-field>
       </div>
       <button mat-raised-button color="accent" (click)="register(form.value)">Register</button>
-      <button mat-raised-button color="primary" (click)="openSnackBar()">Login</button>
     </form>
   </mat-card>
 </div>

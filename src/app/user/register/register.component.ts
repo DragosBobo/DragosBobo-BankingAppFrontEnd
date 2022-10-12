@@ -39,6 +39,6 @@ export class RegisterComponent implements OnDestroy {
     }
   }
   openSnackBar() {
-    this.snackBar.openFromComponent(SnackBarComponent, {});
+    this.snackBar.openFromComponent(SnackBarComponent, { duration: 5000 });
   }
 }
