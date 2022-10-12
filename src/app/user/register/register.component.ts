@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { UserService } from '../service/user.service';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 import { IUserRegisterModel } from '../user.model';
 
 @Component({
@@ -13,7 +15,7 @@ export class RegisterComponent implements OnDestroy {
   notifier = new Subject();
   error = false;
   confirmedPasswordError = false;
-  constructor(private user: UserService, private router: Router) {}
+  constructor(private user: UserService, private router: Router, private snackBar: MatSnackBar) {}
   ngOnDestroy(): void {
     this.notifier.complete();
   }
@@ -33,8 +35,10 @@ export class RegisterComponent implements OnDestroy {
           },
         });
     } else {
-      this.confirmedPasswordError = true;
-      this.error = false;
+      this.openSnackBar();
     }
+  }
+  openSnackBar() {
+    this.snackBar.openFromComponent(SnackBarComponent, {});
   }
 }

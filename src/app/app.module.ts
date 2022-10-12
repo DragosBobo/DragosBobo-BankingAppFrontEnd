@@ -36,6 +36,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { RegisterComponent } from './user/register/register.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBarComponent } from './user/snack-bar/snack-bar.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { RegisterComponent } from './user/register/register.component';
     AddAccountModalComponent,
     LoginButtonComponent,
     RegisterComponent,
+    SnackBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +76,7 @@ import { RegisterComponent } from './user/register/register.component';
     MatRippleModule,
     MatFormFieldModule,
     MatTableExporterModule,
+    MatSnackBarModule,
   ],
   providers: [
     AccountService,

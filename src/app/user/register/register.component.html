@@ -1,12 +1,6 @@
 <div class="main">
   <mat-card class="form-card">
     <form class="form" #form="ngForm" novalidate>
-      <ng-container *ngIf="error">
-        <div class="error"><h1>Invalid inputs</h1></div>
-      </ng-container>
-      <ng-container *ngIf="confirmedPasswordError">
-        <div class="passwordError"><h2>passwords doesn't match</h2></div>
-      </ng-container>
       <div class="name-container">
         <mat-form-field appearance="fill">
           <mat-label>First Name</mat-label>
@@ -38,8 +32,8 @@
           <input type="password" matInput placeholder="********" name="confirmedPassword" ngModel />
         </mat-form-field>
       </div>
-      <button mat-raised-button color="accent" routerLink="/register" (click)="register(form.value)">Register</button>
-      <button mat-raised-button color="primary" routerLink="/login">Login</button>
+      <button mat-raised-button color="accent" (click)="register(form.value)">Register</button>
+      <button mat-raised-button color="primary" (click)="openSnackBar()">Login</button>
     </form>
   </mat-card>
 </div>
