@@ -13,12 +13,10 @@ import { IUserRegisterModel } from '../user.model';
 export class RegisterComponent implements OnDestroy {
   notifier = new Subject();
   error = false;
-  confirmedPasswordError = false;
   constructor(private user: UserService, private router: Router, private snackBar: MatSnackBar) {}
   ngOnDestroy(): void {
     this.notifier.complete();
   }
-
   register(user: IUserRegisterModel) {
     if (user.confirmedPassword === user.password) {
       this.user
@@ -30,7 +28,6 @@ export class RegisterComponent implements OnDestroy {
           },
           error: e => {
             this.error = true;
-            this.confirmedPasswordError = false;
           },
         });
     } else {
