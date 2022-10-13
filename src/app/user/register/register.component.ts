@@ -3,7 +3,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { UserService } from '../service/user.service';
-import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 import { IUserRegisterModel } from '../user.model';
 
 @Component({
@@ -39,6 +38,6 @@ export class RegisterComponent implements OnDestroy {
     }
   }
   openSnackBar() {
-    this.snackBar.openFromComponent(SnackBarComponent, { duration: 5000 });
+    this.snackBar.open("passwords doesn't match ", 'x', { duration: 5000 });
   }
 }
