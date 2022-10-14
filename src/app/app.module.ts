@@ -28,8 +28,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { AddAccountModalComponent } from './account/modal/add-account-modal/add-account-modal.component';
 import { LoginButtonComponent } from './user/login/login-button/login-button.component';
 import { MatRippleModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete-modal.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { RegisterComponent } from './user/register/register.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +48,7 @@ import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete
     DeleteModalComponent,
     AddAccountModalComponent,
     LoginButtonComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +68,13 @@ import { DeleteModalComponent } from './account/modal/delete/delete-modal/delete
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSortModule,
     MatRippleModule,
+    MatFormFieldModule,
+    MatTableExporterModule,
+    MatSnackBarModule,
   ],
   providers: [
     AccountService,
