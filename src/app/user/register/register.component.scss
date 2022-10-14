@@ -14,6 +14,10 @@
     width: 35vw;
     height: 70vh;
     .form {
+      a {
+        margin: auto;
+        font-size: small;
+      }
       .error {
         display: flex;
         align-items: center;
