@@ -56,7 +56,7 @@
       <ng-container matColumnDef="transactionDate">
         <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
         <mat-cell *matCellDef="let transaction">
-          {{ transaction.TransactionDate | date: 'medium' }}
+          {{ transaction.transactionDate | date: 'medium' }}
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

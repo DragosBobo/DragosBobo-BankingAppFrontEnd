@@ -22,7 +22,6 @@ export class LoginComponent implements OnDestroy {
       .loginUser(form)
       .pipe(takeUntil(this.notifier))
       .subscribe(res => {
-        console.log(res);
         this.router.navigate(['/account']);
       });
   }

@@ -51,7 +51,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     if (this.id)
       this.transactionService
-        .fetchTransactions()
+        .fetchTransactionsByAccountId(this.id)
         .pipe(takeUntil(this.notifier))
         .subscribe(response => {
           this.transactions = response;
@@ -95,8 +95,8 @@ export class TransactionComponent implements OnInit, OnDestroy {
 
     this.dataSource.filterPredicate = (data, filter: string) => {
       if (
-        new Date(data.TransactionDate).getTime() >= new Date(this.startDate).getTime() &&
-        new Date(data.TransactionDate).getTime() <= new Date(this.endDate).getTime()
+        new Date(data.transactionDate).getTime() >= new Date(this.startDate).getTime() &&
+        new Date(data.transactionDate).getTime() <= new Date(this.endDate).getTime()
       ) {
         return true;
       } else return false;

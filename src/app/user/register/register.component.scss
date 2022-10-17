@@ -4,8 +4,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  h4 {
-    margin: auto;
+  mat-card {
+    display: flex;
+    flex-direction: column;
   }
   .form-card {
     display: flex;

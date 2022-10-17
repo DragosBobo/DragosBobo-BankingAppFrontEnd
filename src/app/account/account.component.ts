@@ -24,7 +24,9 @@ export class AccountComponent implements OnInit, OnDestroy {
   notifier = new Subject();
   accountSlice: AccountModel[] = [];
   userName!: string;
-  constructor(private userService: UserService, private matRef: MatDialog, private accountService: AccountService) {}
+  constructor(private userService: UserService, private matRef: MatDialog, private accountService: AccountService) {
+    this.getAccounts();
+  }
   ngOnDestroy(): void {
     this.notifier.complete();
   }
