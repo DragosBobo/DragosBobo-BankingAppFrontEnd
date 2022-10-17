@@ -1,39 +1,44 @@
 <div class="main">
   <mat-card class="form-card">
     <h4>Register Page</h4>
-    <form class="form" #form="ngForm" novalidate>
+    <form [formGroup]="regiterForm" class="form" #form="ngForm" novalidate>
       <div class="name-container">
         <mat-form-field appearance="fill">
           <mat-label>First Name</mat-label>
-          <input type="text" matInput placeholder="Jane" name="firstName" ngModel required="true" />
+          <input type="text" matInput placeholder="Jane" name="firstName" formControlName="firstName" />
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Last Name</mat-label>
-          <input type="text" matInput placeholder="Doe" name="lastName" ngModel required="true" />
+          <input type="text" matInput placeholder="Doe" formControlName="lastName" name="lastName" />
         </mat-form-field>
       </div>
       <div class="email-container">
         <mat-form-field appearance="fill">
           <mat-label>User Name</mat-label>
-          <input type="text" matInput placeholder="Jane Doe" name="userName" ngModel required="true" />
+          <input type="text" matInput placeholder="Jane Doe" formControlName="userName" name="userName" />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input type="email" matInput placeholder="Ex. pat@example.com" name="email" ngModel required="true" />
+          <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email" name="email" />
         </mat-form-field>
       </div>
       <div class="password-container">
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
-          <input type="password" matInput placeholder="********" name="password" ngModel required="true" />
+          <input type="password" matInput placeholder="********" formControlName="password" name="password" />
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Confirmed Password</mat-label>
-          <input type="password" matInput placeholder="********" name="confirmedPassword" ngModel required="true" />
+          <input
+            type="password"
+            matInput
+            placeholder="********"
+            formControlName="confirmedPassword"
+            name="confirmedPassword" />
         </mat-form-field>
       </div>
-      <button mat-raised-button color="accent" (click)="register(form.value)">Register</button>
+      <button mat-raised-button color="accent" (click)="register()">Register</button>
       <a href="/login">Login</a>
     </form>
   </mat-card>
