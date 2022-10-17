@@ -35,12 +35,6 @@
   </div>
   <mat-card>
     <mat-table #table [dataSource]="dataSource" matSort matTableExporter #exporter="matTableExporter">
-      <ng-container matColumnDef="num">
-        <mat-header-cell *matHeaderCellDef> num </mat-header-cell>
-        <mat-cell *matCellDef="let transaction">
-          {{ transactions.indexOf(transaction) + 1 }}
-        </mat-cell>
-      </ng-container>
       <ng-container matColumnDef="totalAmount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Total Amount </mat-header-cell>
         <mat-cell *matCellDef="let transaction">

@@ -21,8 +21,8 @@ export class LoginComponent implements OnDestroy {
     this.userService
       .loginUser(form)
       .pipe(takeUntil(this.notifier))
-      .subscribe(res => {
-        this.router.navigate(['/account']);
+      .subscribe(() => {
+        this.router.navigate(['/account']).then(location.reload);
       });
   }
 }

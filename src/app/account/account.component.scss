@@ -23,6 +23,10 @@
     flex-wrap: wrap;
     overflow-y: auto;
     backdrop-filter: blur(1px);
+    font-size: large;
+    display: flex;
+    justify-content: space-between;
+
     .modal {
       background-color: #23a82c;
       width: 150px;
@@ -31,10 +35,28 @@
       align-items: center;
       justify-content: center;
       mat-icon {
+        margin-right: 10px;
         visibility: visible;
-        margin: auto;
         scale: 2.5;
         transition: all 2s ease;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      div {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-weight: 800;
+        font-size: xx-large;
+        margin: auto;
+        transition: 1s ease all;
+      }
+    }
+    .modal:hover {
+      div {
+        scale: 1.5;
+        color: white;
       }
     }
     :hover #add-icon {
@@ -53,6 +75,10 @@
       background-color: #235ba8;
       color: rgba(255, 255, 255, 0.8);
       padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
       cursor: pointer;
       .delete {
         position: absolute;

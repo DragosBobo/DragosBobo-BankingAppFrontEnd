@@ -26,7 +26,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
   notifier = new Subject();
   transactionSlice: TransactionModel[] = [];
   dataSource = new MatTableDataSource(this.transactionSlice);
-  displayedColumns = ['num', 'categoryName', 'totalAmount', 'transactionDate'];
+  displayedColumns = ['categoryName', 'totalAmount', 'transactionDate'];
   startDate!: any;
   endDate!: any;
   report: RaportTransactionModel = {

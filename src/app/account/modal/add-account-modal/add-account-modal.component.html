@@ -1,7 +1,7 @@
 <form #form="ngForm">
   <mat-form-field>
     <mat-label>Account Type</mat-label>
-    <mat-select #fontSize name="type" ngModel>
+    <mat-select #fontSize name="type" ngModel required="true">
       <ng-container *ngFor="let type of accountTypeValues">
         <mat-option [value]="type">{{ typeName[type] }}</mat-option>
       </ng-container>
@@ -9,14 +9,14 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Currency</mat-label>
-    <mat-select #fontSize name="currency" ngModel>
+    <mat-select #fontSize name="currency" ngModel required="true">
       <ng-container *ngFor="let currency of currencyCategories">
         <mat-option [value]="currency">{{ currencyName[currency] }}</mat-option>
       </ng-container>
     </mat-select>
   </mat-form-field>
   <mat-form-field class="iban">
-    <input matInput placeholder="RO****************" name="iban" ngModel />
+    <input matInput placeholder="RO****************" name="iban" ngModel required="true" />
   </mat-form-field>
   <div>
     <button mat-raised-button color="warn" (click)="closeModal()">close</button>

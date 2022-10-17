@@ -5,32 +5,32 @@
       <div class="name-container">
         <mat-form-field appearance="fill">
           <mat-label>First Name</mat-label>
-          <input type="text" matInput placeholder="Jone" name="firstName" ngModel />
+          <input type="text" matInput placeholder="Jane" name="firstName" ngModel required="true" />
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Last Name</mat-label>
-          <input type="text" matInput placeholder="Doe" name="lastName" ngModel />
+          <input type="text" matInput placeholder="Doe" name="lastName" ngModel required="true" />
         </mat-form-field>
       </div>
       <div class="email-container">
         <mat-form-field appearance="fill">
           <mat-label>User Name</mat-label>
-          <input type="text" matInput placeholder="Jane Doe" name="userName" ngModel />
+          <input type="text" matInput placeholder="Jane Doe" name="userName" ngModel required="true" />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input type="email" matInput placeholder="Ex. pat@example.com" name="email" ngModel />
+          <input type="email" matInput placeholder="Ex. pat@example.com" name="email" ngModel required="true" />
         </mat-form-field>
       </div>
       <div class="password-container">
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
-          <input type="password" matInput placeholder="********" name="password" ngModel />
+          <input type="password" matInput placeholder="********" name="password" ngModel required="true" />
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Confirmed Password</mat-label>
-          <input type="password" matInput placeholder="********" name="confirmedPassword" ngModel />
+          <input type="password" matInput placeholder="********" name="confirmedPassword" ngModel required="true" />
         </mat-form-field>
       </div>
       <button mat-raised-button color="accent" (click)="register(form.value)">Register</button>

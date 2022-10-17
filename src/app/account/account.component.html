@@ -8,13 +8,14 @@
     <ng-container *ngFor="let account of accountSlice">
       <ng-container *ngIf="account.accountType !== 'modal'; else Modal">
         <mat-card [ngClass]="{ credit: account.accountType === 'Credit' }">
-          <h6>{{ account.accountType }}</h6>
-          <div>
-            <mat-icon>sim_card</mat-icon>
-            <span> <h2 class="view-details" routerLink="/transaction/{{ account.accountId }}">View Details</h2></span>
-            <h6>{{ account.currency }}</h6>
+          <div class="top-container">
+            <h6>Type : {{ account.accountType }}</h6>
+            <h6>Currency : {{ account.currency }}</h6>
           </div>
-          <h5>{{ account.iban }}</h5>
+          <div>
+            <span> <h2 class="view-details" routerLink="/transaction/{{ account.accountId }}">View Details</h2></span>
+          </div>
+          <h5>Iban : {{ account.iban }}</h5>
           <button
             class="delete"
             mat-fab
@@ -27,9 +28,7 @@
       </ng-container>
       <ng-template #Modal>
         <mat-card matRipple (click)="onClickModal()" [ngClass]="{ modal: account.accountType === 'modal' }">
-          <div>
-            <mat-icon id="add-icon">add_circle_outline</mat-icon>
-          </div>
+          <div><mat-icon>add</mat-icon>ADD</div>
         </mat-card>
       </ng-template>
     </ng-container>
