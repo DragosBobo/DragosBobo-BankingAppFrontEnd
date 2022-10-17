@@ -7,4 +7,12 @@ interface IUserLoginModel {
   email: string;
   password: string;
 }
-export { IUserLoginModel, IUserModel };
+interface IUserRegisterModel {
+  firstName: string;
+  lastName: string;
+  password: string;
+  confirmedPassword: string;
+  email: string;
+  userName: string;
+}
+export { IUserLoginModel, IUserModel, IUserRegisterModel };

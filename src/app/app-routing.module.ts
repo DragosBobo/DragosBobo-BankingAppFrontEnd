@@ -4,13 +4,15 @@ import { AccountComponent } from './account/account.component';
 import { AuthenticationGuard } from './app-guard.service';
 import { TransactionComponent } from './transaction/transaction.component';
 import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-  { path: 'user', component: UserComponent},
+  { path: 'user', component: UserComponent },
   { path: 'transaction/:id', component: TransactionComponent },
   { path: 'login', component: LoginComponent },
   { path: 'account', component: AccountComponent, canActivate: [AuthenticationGuard] },
+  { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: 'account', pathMatch: 'full' },
 ];
 
@@ -18,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
