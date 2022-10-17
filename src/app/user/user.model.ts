@@ -1,11 +1,13 @@
+import { FormControl } from '@angular/forms';
+
 interface IUserModel {
   email: string;
   userId: string;
   username: string;
 }
 interface IUserLoginModel {
-  email: string;
-  password: string;
+  email: FormControl<string | null>;
+  password: FormControl<string | null>;
 }
 interface IUserRegisterModel {
   firstName: string;

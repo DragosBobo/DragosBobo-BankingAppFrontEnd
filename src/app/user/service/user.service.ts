@@ -32,7 +32,7 @@ export class UserService {
   }
 
   //login a user
-  loginUser(user: IUserLoginModel): Observable<any> {
+  loginUser(user: any): Observable<any> {
     return this.http.post<string>(`${this.userApiUrl}/login`, user, { responseType: 'text' as 'json' }).pipe(
       map((response: any) => {
         const decodedToken = this.helper.decodeToken(response);

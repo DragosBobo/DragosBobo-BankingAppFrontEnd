@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { UserService } from '../service/user.service';
@@ -10,6 +10,10 @@ import { IUserLoginModel, IUserModel } from '../user.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnDestroy {
+  loginForm = this.formBuilder.group({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+  });
   token!: string;
   notifier = new Subject();
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {}
@@ -17,12 +21,10 @@ export class LoginComponent implements OnDestroy {
     this.notifier.complete();
   }
 
-  login(form: IUserLoginModel) {
+  login() {
     this.userService
-      .loginUser(form)
+      .loginUser(this.loginForm.value)
       .pipe(takeUntil(this.notifier))
-      .subscribe(() => {
-        this.router.navigate(['/account']).then(location.reload);
-      });
+      .subscribe(() => this.router.navigate(['/account']));
   }
 }
