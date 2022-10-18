@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -20,6 +20,7 @@ import { DatePipe } from '@angular/common';
 })
 export class TransactionComponent implements OnInit, OnDestroy {
   @ViewChild('paginator') paginator!: MatPaginator;
+  @ViewChild('picker') picker!: ElementRef;
   search!: string;
   transactions: TransactionModel[] = [];
   id: any;
@@ -92,15 +93,34 @@ export class TransactionComponent implements OnInit, OnDestroy {
   datePickerHandler() {
     this.startDate = new Date(this.startDate).toISOString();
     this.endDate = new Date(this.endDate).toISOString();
-
-    this.dataSource.filterPredicate = (data, filter: string) => {
-      if (
-        new Date(data.transactionDate).getTime() >= new Date(this.startDate).getTime() &&
-        new Date(data.transactionDate).getTime() <= new Date(this.endDate).getTime()
-      ) {
-        return true;
-      } else return false;
-    };
-    if (this.endDate) this.dataSource.filter = this.endDate;
+    if (this.search) {
+      this.dataSource.filterPredicate = (data, filter: string) => {
+        if (data.categoryName.includes(filter)) {
+          if (
+            new Date(data.transactionDate).getTime() >= new Date(this.startDate).getTime() &&
+            new Date(data.transactionDate).getTime() <= new Date(this.endDate).getTime()
+          ) {
+            return true;
+          } else return false;
+        } else return false;
+      };
+      this.dataSource.filter = this.search;
+    } else {
+      this.dataSource.filterPredicate = (data, filter: string) => {
+        if (
+          new Date(data.transactionDate).getTime() >= new Date(this.startDate).getTime() &&
+          new Date(data.transactionDate).getTime() <= new Date(this.endDate).getTime()
+        ) {
+          return true;
+        } else return false;
+      };
+      this.dataSource.filter = this.endDate;
+    }
+  }
+  reset() {
+    this.dataSource.filter = '';
+    this.startDate = '';
+    this.endDate = '';
+    this.search = '';
   }
 }

@@ -11,7 +11,7 @@ export class TransactionService {
   constructor(private http: HttpClient) {}
   //get all transactions
   fetchTransactions(): Observable<TransactionModel[]> {
-    return this.http.get<TransactionModel[]>(`${this.transactionApiUrl}`);
+    return this.http.get<TransactionModel[]>(`${this.transactionJsonUrl}`);
   }
   //get all transactions for one account Id
   fetchTransactionsByAccountId(id: string): Observable<TransactionModel[]> {

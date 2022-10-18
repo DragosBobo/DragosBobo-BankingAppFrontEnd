@@ -14,7 +14,6 @@
           placeholder="Search for a category"
           [(ngModel)]="search"
           name="search" />
-        <button matSuffix mat-button><mat-icon>search</mat-icon></button>
       </mat-form-field>
     </div>
     <div class="report-container">
@@ -31,6 +30,7 @@
       <button mat-raised-button id="export-button" color="primary" (click)="exporter.exportTable('csv')" [value]="">
         Export Table
       </button>
+      <button mat-raised-button id="back-button" color="warn" (click)="reset()">Reset</button>
     </div>
   </div>
   <mat-card>
@@ -41,6 +41,13 @@
           {{ transaction.totalAmount }}
         </mat-cell>
       </ng-container>
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field>
+          <mat-select panelClass="example-panel-dark-blue">
+            <mat-option *ngFor="let cust of [1, 2, 3, 4]" [value]="cust"> {{ cust }} </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-header-cell>
       <ng-container matColumnDef="categoryName">
         <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
         <mat-cell *matCellDef="let transaction">

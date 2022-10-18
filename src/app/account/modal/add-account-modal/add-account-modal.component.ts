@@ -30,7 +30,6 @@ export class AddAccountModalComponent implements OnDestroy {
   }
 
   addAccount(acc: CreateAccountModel) {
-    console.log(acc);
     if (this.id) {
       acc.userId = this.id;
       this.accountService

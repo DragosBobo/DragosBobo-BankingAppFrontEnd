@@ -70,7 +70,7 @@ export class AccountComponent implements OnInit, OnDestroy {
         .subscribe(accounts => {
           this.accounts = accounts;
           this.accounts.unshift(modal);
-          this.accountSlice = this.accounts.slice(0, 4);
+          this.accountSlice = this.accounts.slice(0, 8);
         });
     }
   }
