@@ -1,8 +1,8 @@
 export { TransactionModel, CreateTransactionModel, RaportTransactionModel };
 
 enum CategoryTransaction {
-  Food,
-  Entertainment,
+  food,
+  entertainment,
 }
 
 interface TransactionModel {

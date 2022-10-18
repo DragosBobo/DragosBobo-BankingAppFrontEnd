@@ -7,16 +7,16 @@ import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
 import { filter, Subject, takeUntil } from 'rxjs';
 import { TransactionService } from './service/transaction.service';
-import { TransactionId, CreateTransaction, RaportTransaction } from './transaction.mock';
+import { TransactionId, RaportTransaction } from './transaction.mock';
 import { TransactionModel } from './transaction.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RaportTransactionModel } from './transaction.model';
-import { DatePipe } from '@angular/common';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
   styleUrls: ['./transaction.component.scss'],
-  providers: [DatePipe],
+  providers: [DatePipe, TitleCasePipe],
 })
 export class TransactionComponent implements OnInit, OnDestroy {
   @ViewChild('paginator') paginator!: MatPaginator;
@@ -38,6 +38,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
+    private titlecasePipe: TitleCasePipe,
     private datePipe: DatePipe,
     private transactionService: TransactionService,
     private activatedRoute: ActivatedRoute,
@@ -81,46 +82,29 @@ export class TransactionComponent implements OnInit, OnDestroy {
       this.report.startDate = startTransformed;
     }
   }
-  searchHandler(event: Event) {
-    const filter = (event.target as HTMLInputElement).value;
-    this.dataSource.filterPredicate = (data, filter: string) => {
-      if (data.categoryName.includes(filter)) {
-        return true;
-      } else return false;
-    };
-    this.dataSource.filter = filter;
+  searchHandler() {
+    let filter = this.titlecasePipe.transform(this.search);
+    this.dataSource.filter = 'Food';
   }
   datePickerHandler() {
     this.startDate = new Date(this.startDate).toISOString();
     this.endDate = new Date(this.endDate).toISOString();
-    if (this.search) {
-      this.dataSource.filterPredicate = (data, filter: string) => {
-        if (data.categoryName.includes(filter)) {
-          if (
-            new Date(data.transactionDate).getTime() >= new Date(this.startDate).getTime() &&
-            new Date(data.transactionDate).getTime() <= new Date(this.endDate).getTime()
-          ) {
-            return true;
-          } else return false;
-        } else return false;
-      };
-      this.dataSource.filter = this.search;
-    } else {
-      this.dataSource.filterPredicate = (data, filter: string) => {
+
+    this.dataSource.filterPredicate = (data, filter: string) => {
+      if (data.categoryName.includes(filter)) {
         if (
           new Date(data.transactionDate).getTime() >= new Date(this.startDate).getTime() &&
           new Date(data.transactionDate).getTime() <= new Date(this.endDate).getTime()
         ) {
           return true;
         } else return false;
-      };
-      this.dataSource.filter = this.endDate;
-    }
+      } else return false;
+    };
+    this.dataSource.filter = this.search;
   }
   reset() {
-    this.dataSource.filter = '';
     this.startDate = '';
     this.endDate = '';
-    this.search = '';
+    this.dataSource.filter = '';
   }
 }

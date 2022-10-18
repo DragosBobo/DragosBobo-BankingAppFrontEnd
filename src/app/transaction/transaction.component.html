@@ -4,19 +4,14 @@
   </mat-toolbar>
 
   <div class="tools-container">
-    <div class="search-container">
+    <div class="search-container"></div>
+  </div>
+  <mat-card class="table">
+    <div class="header">
       <mat-form-field class="example-full-width">
         <span matPrefix> </span>
-        <input
-          type="text"
-          matInput
-          (keyup)="searchHandler($event)"
-          placeholder="Search for a category"
-          [(ngModel)]="search"
-          name="search" />
+        <input type="text" matInput (keyup)="searchHandler()" placeholder="Search" [(ngModel)]="search" name="search" />
       </mat-form-field>
-    </div>
-    <div class="report-container">
       <mat-form-field>
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [rangePicker]="picker">
@@ -27,13 +22,11 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
       </mat-form-field>
-      <button mat-raised-button id="export-button" color="primary" (click)="exporter.exportTable('csv')" [value]="">
-        Export Table
-      </button>
       <button mat-raised-button id="back-button" color="warn" (click)="reset()">Reset</button>
+      <button mat-raised-button id="export-button" color="primary" (click)="exporter.exportTable('csv')" [value]="">
+        Get Raport
+      </button>
     </div>
-  </div>
-  <mat-card>
     <mat-table #table [dataSource]="dataSource" matSort matTableExporter #exporter="matTableExporter">
       <ng-container matColumnDef="totalAmount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Total Amount </mat-header-cell>
@@ -41,21 +34,15 @@
           {{ transaction.totalAmount }}
         </mat-cell>
       </ng-container>
-      <mat-header-cell *matHeaderCellDef>
-        <mat-form-field>
-          <mat-select panelClass="example-panel-dark-blue">
-            <mat-option *ngFor="let cust of [1, 2, 3, 4]" [value]="cust"> {{ cust }} </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </mat-header-cell>
+
       <ng-container matColumnDef="categoryName">
-        <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
         <mat-cell *matCellDef="let transaction">
           {{ transaction.categoryName }}
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="transactionDate">
-        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
         <mat-cell *matCellDef="let transaction">
           {{ transaction.transactionDate | date: 'medium' }}
         </mat-cell>
