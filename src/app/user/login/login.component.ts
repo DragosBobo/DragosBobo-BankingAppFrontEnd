@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router, TitleStrategy } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { UserService } from '../service/user.service';
 import { IUserLoginModel, IUserModel } from '../user.model';
@@ -16,7 +17,12 @@ export class LoginComponent implements OnDestroy {
   });
   token!: string;
   notifier = new Subject();
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
   ngOnDestroy(): void {
     this.notifier.complete();
   }
@@ -25,6 +31,12 @@ export class LoginComponent implements OnDestroy {
     this.userService
       .loginUser(this.loginForm.value)
       .pipe(takeUntil(this.notifier))
-      .subscribe(() => this.router.navigate(['/account']));
+      .subscribe({
+        complete: () => this.router.navigate(['/account']).then(() => window.location.reload),
+        error: () => this.openSnackBar(),
+      });
+  }
+  openSnackBar() {
+    this.snackBar.open('Invalid inputs ', 'x', { duration: 5000 });
   }
 }
