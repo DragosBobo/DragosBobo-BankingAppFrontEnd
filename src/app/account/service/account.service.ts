@@ -14,7 +14,7 @@ export class AccountService {
     return this.http.get<AccountModel[]>(this.accountApiUrl);
   }
   //create accounts
-  createAccounts(addAccount: CreateAccountModel): Observable<string> {
+  createAccount(addAccount: any): Observable<string> {
     return this.http.post<string>(this.accountApiUrl, addAccount);
   }
   //delete account
