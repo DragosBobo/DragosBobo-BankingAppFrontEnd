@@ -64,10 +64,22 @@
 }
 @media (max-width: 1350px) {
   .main {
-    mat-card {
-      mat-table {
-        height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    mat-toolbar {
+      height: 75px;
+      button {
+        position: relative;
+        right: 43px;
       }
+    }
+    .table {
+      height: 500px;
+      width: 1000px;
+
+      position: relative;
+      bottom: 40px;
     }
   }
 }

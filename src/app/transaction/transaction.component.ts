@@ -50,6 +50,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log(this.startDate);
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     if (this.id)
       this.transactionService
@@ -84,27 +85,54 @@ export class TransactionComponent implements OnInit, OnDestroy {
   }
   searchHandler() {
     let filter = this.titlecasePipe.transform(this.search);
-    this.dataSource.filter = 'Food';
+    this.dataSource.filterPredicate = (data, filter: string) => {
+      if (
+        data.categoryName.includes(filter) ||
+        data.totalAmount.toString().includes(filter) ||
+        this.datePipe.transform(data.transactionDate, 'medium')?.toString().includes(filter)
+      )
+        return true;
+      else return false;
+    };
+    this.dataSource.filter = filter;
   }
   datePickerHandler() {
-    this.startDate = new Date(this.startDate).toISOString();
-    this.endDate = new Date(this.endDate).toISOString();
-
-    this.dataSource.filterPredicate = (data, filter: string) => {
-      if (data.categoryName.includes(filter)) {
+    if (this.search != undefined && this.search != '') {
+      this.startDate = new Date(this.startDate).toISOString();
+      this.endDate = new Date(this.endDate).toISOString();
+      let filter = this.titlecasePipe.transform(this.search);
+      this.dataSource.filterPredicate = (data, filter: string) => {
+        if (
+          data.categoryName.includes(filter) ||
+          data.totalAmount.toString().includes(filter) ||
+          this.datePipe.transform(data.transactionDate, 'medium')?.toString().includes(filter)
+        ) {
+          if (
+            new Date(data.transactionDate).getTime() >= new Date(this.startDate).getTime() &&
+            new Date(data.transactionDate).getTime() <= new Date(this.endDate).getTime()
+          ) {
+            return true;
+          } else return false;
+        } else return false;
+      };
+      this.dataSource.filter = filter;
+    } else {
+      this.dataSource.filterPredicate = (data, filter: string) => {
         if (
           new Date(data.transactionDate).getTime() >= new Date(this.startDate).getTime() &&
           new Date(data.transactionDate).getTime() <= new Date(this.endDate).getTime()
         ) {
           return true;
         } else return false;
-      } else return false;
-    };
-    this.dataSource.filter = this.search;
+      };
+      this.dataSource.filter = 'search';
+    }
   }
+
   reset() {
-    this.startDate = '';
-    this.endDate = '';
+    this.search = '';
+    this.startDate = undefined;
+    this.endDate = undefined;
     this.dataSource.filter = '';
   }
 }

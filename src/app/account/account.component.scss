@@ -21,7 +21,7 @@
     height: 90%;
     margin: auto;
     flex-wrap: wrap;
-    overflow-y: auto;
+    overflow-y: none;
     backdrop-filter: blur(1px);
     font-size: large;
     display: flex;
@@ -71,14 +71,15 @@
       z-index: 0;
       flex: 0 1 calc(20%);
       margin: auto;
-      max-height: 110px;
+      max-height: 100px;
       background-color: #235ba8;
       color: rgba(255, 255, 255, 0.8);
       padding: 25px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-width: 300px;
+      min-width: 200px;
+      max-width: 230px;
 
       cursor: pointer;
       .delete {
@@ -136,7 +137,7 @@
     font-weight: 800;
   }
 }
-@media (max-width: 850px) {
+@media (max-width: 1850px) {
   .main {
     .accounts {
       .modal {
@@ -154,7 +155,7 @@
     }
   }
 }
-@media (max-width: 1850px) {
+@media (max-width: 1350px) {
   .main {
     .accounts {
       .modal {

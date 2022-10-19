@@ -24,7 +24,7 @@
       </mat-form-field>
       <button mat-raised-button id="back-button" color="warn" (click)="reset()">Reset</button>
       <button mat-raised-button id="export-button" color="primary" (click)="exporter.exportTable('csv')" [value]="">
-        Get Raport
+        Get Report
       </button>
     </div>
     <mat-table #table [dataSource]="dataSource" matSort matTableExporter #exporter="matTableExporter">
