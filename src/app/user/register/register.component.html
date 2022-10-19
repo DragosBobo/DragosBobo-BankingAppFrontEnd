@@ -1,7 +1,7 @@
 <div class="main">
   <mat-card class="form-card">
     <h4>Register Page</h4>
-    <form [formGroup]="regiterForm" class="form" #form="ngForm" novalidate>
+    <form [formGroup]="regiterForm" class="form" #form="ngForm" novalidate (ngSubmit)="register()">
       <div class="name-container">
         <mat-form-field appearance="fill">
           <mat-label>First Name</mat-label>
@@ -38,8 +38,8 @@
             name="confirmedPassword" />
         </mat-form-field>
       </div>
-      <button mat-raised-button color="accent" (click)="register()">Register</button>
-      <a href="/login">Login</a>
+      <button mat-raised-button color="accent" type="submit">Register</button>
+      <a type="button" href="/login">Login</a>
     </form>
   </mat-card>
 </div>

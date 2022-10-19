@@ -32,7 +32,7 @@ export class LoginComponent implements OnDestroy {
       .loginUser(this.loginForm.value)
       .pipe(takeUntil(this.notifier))
       .subscribe({
-        complete: () => this.router.navigate(['/account']).then(() => window.location.reload),
+        complete: () => this.router.navigate(['/account']).then(() => window.location.reload()),
         error: () => this.openSnackBar(),
       });
   }
