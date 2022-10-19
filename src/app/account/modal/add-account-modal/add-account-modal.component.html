@@ -16,7 +16,8 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field class="iban">
-    <input matInput placeholder="RO****************" name="iban" formControlName="iban" required="true" />
+    <input matInput placeholder="RO***************" name="iban" formControlName="iban" required="true" />
+    <mat-error *ngIf="addAccountForm.getError"> invalid Iban </mat-error>
   </mat-form-field>
   <div>
     <button mat-raised-button color="warn" (click)="closeModal()" type="button">CLOSE</button>

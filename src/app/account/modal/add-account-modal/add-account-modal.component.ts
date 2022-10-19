@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { AccountType, CreateAccountModel, Currency } from '../../account.model';
 import { AccountService } from '../../service/account.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,9 +16,10 @@ export class AddAccountModalComponent implements OnDestroy {
   addAccountForm = this.formBuilder.group({
     accountType: new FormControl(''),
     currency: new FormControl(''),
-    iban: new FormControl('', [this.patternValidator()]),
+    iban: new FormControl('', [this.patternValidator(), Validators.maxLength(14)]),
     userId: new FormControl(''),
   });
+  createAccount!: CreateAccountModel;
   accountTypeValues: AccountType[] = [0, 1];
   currencyCategories: Currency[] = [0, 1, 2];
   public currencyName = Object.keys(Currency).filter(v => isNaN(Number(v))) as (keyof typeof Currency)[];
@@ -38,11 +39,11 @@ export class AddAccountModalComponent implements OnDestroy {
 
   addAccount() {
     if (this.id) {
-      this.addAccountForm.patchValue({ userId: this.id });
-
       if (this.addAccountForm.valid) {
+        this.addAccountForm.patchValue({ userId: this.id });
+        this.createAccount = this.addAccountForm.value as CreateAccountModel;
         this.accountService
-          .createAccount(this.addAccountForm.value)
+          .createAccount(this.createAccount)
           .pipe(takeUntil(this.notifier))
           .subscribe(response => this.ref.close(response));
       }

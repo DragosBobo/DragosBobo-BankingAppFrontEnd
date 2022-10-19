@@ -121,11 +121,11 @@
     }
     mat-card:hover .delete {
       position: absolute;
-      top: -50px;
+      top: -10px;
       transition: all 1s ease;
       display: block;
-      height: 50px;
-      width: 50px;
+      height: 60px;
+      width: 60px;
       opacity: 100;
     }
     .view-details {
