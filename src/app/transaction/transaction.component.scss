@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 1200px;
   justify-content: center;
-  grid-template-rows: 80px 500px;
+  grid-template-rows: 80px 700px;
   grid-row-gap: auto;
   .header {
     width: 100%;
@@ -24,7 +24,7 @@
   }
   mat-table {
     overflow-y: scroll;
-    height: 350px;
+    height: 550px;
   }
 }
 
