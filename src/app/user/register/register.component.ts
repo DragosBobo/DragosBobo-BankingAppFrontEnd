@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
@@ -11,16 +12,29 @@ import { IUserRegisterModel } from '../user.model';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnDestroy {
+  regiterForm = this.formBuilder.group({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    userName: new FormControl('', [Validators.required]),
+    confirmedPassword: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+  });
   notifier = new Subject();
   error = false;
-  constructor(private user: UserService, private router: Router, private snackBar: MatSnackBar) {}
+  constructor(
+    private user: UserService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private formBuilder: FormBuilder
+  ) {}
   ngOnDestroy(): void {
     this.notifier.complete();
   }
-  register(user: IUserRegisterModel) {
-    if (user.confirmedPassword === user.password) {
+  register() {
+    if (this.regiterForm.value.confirmedPassword === this.regiterForm.value.password) {
       this.user
-        .registerUser(user)
+        .registerUser(this.regiterForm.value)
         .pipe(takeUntil(this.notifier))
         .subscribe({
           complete: () => {

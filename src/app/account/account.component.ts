@@ -1,11 +1,4 @@
-import {
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-  Pipe,
-  PipeTransform,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { AccountModel, CreateAccountModel } from './account.model';
 import { AccountService } from './service/account.service';
 import { TransactionService } from '../transaction/service/transaction.service';
@@ -30,13 +23,17 @@ export class AccountComponent implements OnInit, OnDestroy {
   id = this.userService.getUserId();
   notifier = new Subject();
   accountSlice: AccountModel[] = [];
-  constructor(private userService: UserService, private matRef: MatDialog, private accountService: AccountService) {}
+  userName!: string;
+  constructor(private userService: UserService, private matRef: MatDialog, private accountService: AccountService) {
+    this.getAccounts();
+  }
   ngOnDestroy(): void {
     this.notifier.complete();
   }
 
   ngOnInit(): void {
     this.getAccounts();
+    this.userName = this.userService.getUserName();
   }
   onPageChange(event: PageEvent) {
     const startIndex = event.pageIndex * event.pageSize;
@@ -73,7 +70,7 @@ export class AccountComponent implements OnInit, OnDestroy {
         .subscribe(accounts => {
           this.accounts = accounts;
           this.accounts.unshift(modal);
-          this.accountSlice = this.accounts.slice(0, 4);
+          this.accountSlice = this.accounts.slice(0, 8);
         });
     }
   }

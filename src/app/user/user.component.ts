@@ -7,6 +7,7 @@ import { UserService } from './service/user.service';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
+  displayedColumns = ['accounts', 'email'];
   constructor(public userService: UserService) {}
   ngOnInit(): void {
     throw new Error('Method not implemented.');

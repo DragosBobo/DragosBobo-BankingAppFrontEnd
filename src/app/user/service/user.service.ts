@@ -18,6 +18,7 @@ export class UserService {
   };
   private readonly userApiUrl = `${environment.apiBase}/Auth`;
   userId!: string;
+  userName!: string;
   constructor(private http: HttpClient) {
     const id = localStorage.getItem('id');
     if (id) {
@@ -26,12 +27,12 @@ export class UserService {
   }
 
   // register a user
-  registerUser(user: IUserRegisterModel): Observable<any> {
-    return this.http.post<any>(`${this.userApiUrl}/register`, user);
+  registerUser(user: any): Observable<any> {
+    return this.http.post<any>(`${this.userApiUrl}/register`, user, { responseType: 'text' as 'json' });
   }
 
   //login a user
-  loginUser(user: IUserLoginModel): Observable<any> {
+  loginUser(user: any): Observable<any> {
     return this.http.post<string>(`${this.userApiUrl}/login`, user, { responseType: 'text' as 'json' }).pipe(
       map((response: any) => {
         const decodedToken = this.helper.decodeToken(response);
@@ -40,11 +41,21 @@ export class UserService {
         this.currentUser.username = decodedToken.given_name;
         localStorage.setItem('token', response);
         localStorage.setItem('id', this.currentUser.userId);
+        localStorage.setItem('name', this.currentUser.username);
+
         return this.currentUser;
       })
     );
   }
   getUserId(): string {
     return this.userId;
+  }
+  getUserName(): string {
+    const name = localStorage.getItem('name');
+
+    if (name) {
+      this.userName = name;
+    }
+    return this.userName;
   }
 }

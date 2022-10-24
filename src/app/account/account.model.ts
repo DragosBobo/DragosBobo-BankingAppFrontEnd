@@ -5,10 +5,10 @@ interface AccountModel {
   accountId: string;
 }
 interface CreateAccountModel {
-  accountType: AccountType;
-  currency: Currency;
-  iban: string;
-  userId: string;
+  accountType: string | null | undefined;
+  currency: string | null | undefined;
+  iban: string | null | undefined;
+  userId: string | null | undefined;
 }
 const modal: AccountModel = {
   accountId: 'modal',

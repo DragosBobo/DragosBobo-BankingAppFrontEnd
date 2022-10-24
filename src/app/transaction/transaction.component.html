@@ -1,23 +1,14 @@
 <div class="main">
-  <div class="header">
+  <mat-toolbar>
     <button mat-raised-button id="back-button" color="primary" routerLink="/account">Back</button>
-  </div>
+  </mat-toolbar>
 
-  <div class="tools-container">
-    <div class="search-container">
+  <mat-card class="table">
+    <div class="header">
       <mat-form-field class="example-full-width">
         <span matPrefix> </span>
-        <input
-          type="text"
-          matInput
-          (keyup)="searchHandler($event)"
-          placeholder="Search for a category"
-          [(ngModel)]="search"
-          name="search" />
-        <button matSuffix mat-button><mat-icon>search</mat-icon></button>
+        <input type="text" matInput (keyup)="searchHandler()" placeholder="Search" [(ngModel)]="search" name="search" />
       </mat-form-field>
-    </div>
-    <div class="report-container">
       <mat-form-field>
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [rangePicker]="picker">
@@ -28,38 +19,29 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
       </mat-form-field>
-      <button mat-raised-button id="raport-button" color="warn" (click)="generateRaport(id)" [value]="">
-        Generate Report
-      </button>
+      <button mat-raised-button id="back-button" color="warn" (click)="reset()">Reset</button>
       <button mat-raised-button id="export-button" color="primary" (click)="exporter.exportTable('csv')" [value]="">
-        Export Table
+        Get Report
       </button>
     </div>
-  </div>
-  <mat-card>
     <mat-table #table [dataSource]="dataSource" matSort matTableExporter #exporter="matTableExporter">
-      <ng-container matColumnDef="num">
-        <mat-header-cell *matHeaderCellDef> num </mat-header-cell>
-        <mat-cell *matCellDef="let transaction">
-          {{ transactions.indexOf(transaction) + 1 }}
-        </mat-cell>
-      </ng-container>
       <ng-container matColumnDef="totalAmount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Total Amount </mat-header-cell>
         <mat-cell *matCellDef="let transaction">
           {{ transaction.totalAmount }}
         </mat-cell>
       </ng-container>
+
       <ng-container matColumnDef="categoryName">
-        <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
         <mat-cell *matCellDef="let transaction">
           {{ transaction.categoryName }}
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="transactionDate">
-        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
         <mat-cell *matCellDef="let transaction">
-          {{ transaction.TransactionDate | date: 'medium' }}
+          {{ transaction.transactionDate | date: 'medium' }}
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

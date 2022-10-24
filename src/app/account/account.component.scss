@@ -3,14 +3,14 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-
-  .navbar {
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  mat-toolbar {
     display: flex;
     justify-content: space-between;
-    padding-right: 10px;
+    height: 100px;
+    h1 {
+      color: #235ba8;
+      font-weight: bold;
+    }
   }
 
   .accounts {
@@ -21,8 +21,12 @@
     height: 90%;
     margin: auto;
     flex-wrap: wrap;
-    overflow-y: auto;
+    overflow-y: none;
     backdrop-filter: blur(1px);
+    font-size: large;
+    display: flex;
+    justify-content: space-between;
+
     .modal {
       background-color: #23a82c;
       width: 150px;
@@ -31,10 +35,28 @@
       align-items: center;
       justify-content: center;
       mat-icon {
+        margin-right: 10px;
         visibility: visible;
-        margin: auto;
         scale: 2.5;
         transition: all 2s ease;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      div {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-weight: 800;
+        font-size: xx-large;
+        margin: auto;
+        transition: 1s ease all;
+      }
+    }
+    .modal:hover {
+      div {
+        scale: 1.5;
+        color: white;
       }
     }
     :hover #add-icon {
@@ -49,16 +71,25 @@
       z-index: 0;
       flex: 0 1 calc(20%);
       margin: auto;
-      max-height: 110px;
+      max-height: 100px;
       background-color: #235ba8;
       color: rgba(255, 255, 255, 0.8);
       padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 200px;
+      max-width: 330px;
+
       cursor: pointer;
       .delete {
         position: absolute;
         top: 0;
-        transition: all 2s ease;
+        transition: all 1s ease;
         opacity: 0;
+        mat-icon {
+          margin: auto;
+        }
       }
       h6 {
         color: whitesmoke;
@@ -90,11 +121,11 @@
     }
     mat-card:hover .delete {
       position: absolute;
-      top: -80px;
-      transition: all 2s ease;
+      top: -10px;
+      transition: all 1s ease;
       display: block;
-      height: 80px;
-      width: 80px;
+      height: 60px;
+      width: 60px;
       opacity: 100;
     }
     .view-details {
@@ -106,11 +137,38 @@
     font-weight: 800;
   }
 }
-@media (max-width: 850px) {
+@media (max-width: 1850px) {
   .main {
     .accounts {
       .modal {
         height: 118px;
+      }
+      mat-card:hover .delete {
+        position: absolute;
+        top: -0px;
+        transition: all 1s ease;
+        display: block;
+        height: 50px;
+        width: 50px;
+        opacity: 100;
+      }
+    }
+  }
+}
+@media (max-width: 1350px) {
+  .main {
+    .accounts {
+      .modal {
+        height: 118px;
+      }
+      mat-card:hover .delete {
+        position: absolute;
+        top: -10px;
+        transition: all 1s ease;
+        display: block;
+        height: 50px;
+        width: 50px;
+        opacity: 100;
       }
     }
   }

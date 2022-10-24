@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,26 +7,27 @@ import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
 import { filter, Subject, takeUntil } from 'rxjs';
 import { TransactionService } from './service/transaction.service';
-import { TransactionId, CreateTransaction, RaportTransaction } from './transaction.mock';
+import { TransactionId, RaportTransaction } from './transaction.mock';
 import { TransactionModel } from './transaction.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RaportTransactionModel } from './transaction.model';
-import { DatePipe } from '@angular/common';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
   styleUrls: ['./transaction.component.scss'],
-  providers: [DatePipe],
+  providers: [DatePipe, TitleCasePipe],
 })
 export class TransactionComponent implements OnInit, OnDestroy {
   @ViewChild('paginator') paginator!: MatPaginator;
+  @ViewChild('picker') picker!: ElementRef;
   search!: string;
   transactions: TransactionModel[] = [];
   id: any;
   notifier = new Subject();
   transactionSlice: TransactionModel[] = [];
   dataSource = new MatTableDataSource(this.transactionSlice);
-  displayedColumns = ['num', 'categoryName', 'totalAmount', 'transactionDate'];
+  displayedColumns = ['categoryName', 'totalAmount', 'transactionDate'];
   startDate!: any;
   endDate!: any;
   report: RaportTransactionModel = {
@@ -37,6 +38,7 @@ export class TransactionComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
+    private titlecasePipe: TitleCasePipe,
     private datePipe: DatePipe,
     private transactionService: TransactionService,
     private activatedRoute: ActivatedRoute,
@@ -48,10 +50,11 @@ export class TransactionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log(this.startDate);
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     if (this.id)
       this.transactionService
-        .fetchTransactions()
+        .fetchTransactionsByAccountId(this.id)
         .pipe(takeUntil(this.notifier))
         .subscribe(response => {
           this.transactions = response;
@@ -80,27 +83,56 @@ export class TransactionComponent implements OnInit, OnDestroy {
       this.report.startDate = startTransformed;
     }
   }
-  searchHandler(event: Event) {
-    const filter = (event.target as HTMLInputElement).value;
+  searchHandler() {
+    let filter = this.titlecasePipe.transform(this.search);
     this.dataSource.filterPredicate = (data, filter: string) => {
-      if (data.categoryName.includes(filter)) {
+      if (
+        data.categoryName.includes(filter) ||
+        data.totalAmount.toString().includes(filter) ||
+        this.datePipe.transform(data.transactionDate, 'medium')?.toString().includes(filter)
+      )
         return true;
-      } else return false;
+      else return false;
     };
     this.dataSource.filter = filter;
   }
   datePickerHandler() {
-    this.startDate = new Date(this.startDate).toISOString();
-    this.endDate = new Date(this.endDate).toISOString();
+    if (this.search != undefined && this.search != '') {
+      this.startDate = new Date(this.startDate).toISOString();
+      this.endDate = new Date(this.endDate).toISOString();
+      let filter = this.titlecasePipe.transform(this.search);
+      this.dataSource.filterPredicate = (data, filter: string) => {
+        if (
+          data.categoryName.includes(filter) ||
+          data.totalAmount.toString().includes(filter) ||
+          this.datePipe.transform(data.transactionDate, 'medium')?.toString().includes(filter)
+        ) {
+          if (
+            new Date(data.transactionDate).getTime() >= new Date(this.startDate).getTime() &&
+            new Date(data.transactionDate).getTime() <= new Date(this.endDate).getTime()
+          ) {
+            return true;
+          } else return false;
+        } else return false;
+      };
+      this.dataSource.filter = filter;
+    } else {
+      this.dataSource.filterPredicate = (data, filter: string) => {
+        if (
+          new Date(data.transactionDate).getTime() >= new Date(this.startDate).getTime() &&
+          new Date(data.transactionDate).getTime() <= new Date(this.endDate).getTime()
+        ) {
+          return true;
+        } else return false;
+      };
+      this.dataSource.filter = 'search';
+    }
+  }
 
-    this.dataSource.filterPredicate = (data, filter: string) => {
-      if (
-        new Date(data.TransactionDate).getTime() >= new Date(this.startDate).getTime() &&
-        new Date(data.TransactionDate).getTime() <= new Date(this.endDate).getTime()
-      ) {
-        return true;
-      } else return false;
-    };
-    if (this.endDate) this.dataSource.filter = this.endDate;
+  reset() {
+    this.search = '';
+    this.startDate = undefined;
+    this.endDate = undefined;
+    this.dataSource.filter = '';
   }
 }

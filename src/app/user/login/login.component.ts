@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router, TitleStrategy } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { UserService } from '../service/user.service';
 import { IUserLoginModel, IUserModel } from '../user.model';
@@ -10,19 +11,32 @@ import { IUserLoginModel, IUserModel } from '../user.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnDestroy {
+  loginForm = this.formBuilder.group({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+  });
   token!: string;
   notifier = new Subject();
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
   ngOnDestroy(): void {
     this.notifier.complete();
   }
 
-  login(form: IUserLoginModel) {
+  login() {
     this.userService
-      .loginUser(form)
+      .loginUser(this.loginForm.value)
       .pipe(takeUntil(this.notifier))
-      .subscribe(res => {
-        this.router.navigate(['/account']).then(() => window.location.reload());
+      .subscribe({
+        complete: () => this.router.navigate(['/account']).then(() => window.location.reload()),
+        error: () => this.openSnackBar(),
       });
+  }
+  openSnackBar() {
+    this.snackBar.open('Invalid inputs ', 'x', { duration: 5000 });
   }
 }
